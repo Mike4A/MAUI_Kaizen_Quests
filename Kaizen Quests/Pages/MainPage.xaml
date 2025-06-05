@@ -3,11 +3,10 @@
     x:Class="Kaizen_Quests.Pages.MainPage"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:viewModels="clr-namespace:Kaizen_Quests.ViewModels"    
-    Shell.NavBarIsVisible="False"
-    >
+    xmlns:viewModels="clr-namespace:Kaizen_Quests.ViewModels"
+    Shell.NavBarIsVisible="False">
 
-   <ContentPage.BindingContext>
+    <ContentPage.BindingContext>
         <viewModels:MainViewModel />
     </ContentPage.BindingContext>
 
@@ -23,7 +22,9 @@
                                 Margin="0,0,0,12"
                                 Padding="12"
                                 BackgroundColor="{Binding Color}"
-                                CornerRadius="12">
+                                BorderColor="#88888888"
+                                HasShadow="True"
+                                CornerRadius="24">
 
                                 <VerticalStackLayout>
 
@@ -44,7 +45,7 @@
                                         <Label
                                             Grid.Column="1"
                                             Padding="8,0,0,0"
-                                            FontSize="20"
+                                            FontSize="24"
                                             HorizontalOptions="End"
                                             Text="↕"
                                             VerticalOptions="Center">
@@ -59,9 +60,7 @@
                                     <CollectionView ItemsSource="{Binding Goals}">
                                         <CollectionView.ItemTemplate>
                                             <DataTemplate>
-                                                <Grid                                                    
-                                                    ColumnDefinitions="Auto, *, Auto"
-                                                    VerticalOptions="Center">
+                                                <Grid ColumnDefinitions="Auto, *, Auto" VerticalOptions="Center">
 
                                                     <CheckBox
                                                         Grid.Column="0"
@@ -71,15 +70,15 @@
 
                                                     <Entry
                                                         Grid.Column="1"
-                                                        Placeholder="Zielbeschreibung"
                                                         FontSize="14"
+                                                        Placeholder="Zielbeschreibung"
                                                         Text="{Binding Description}" />
 
 
                                                     <Label
                                                         Grid.Column="2"
                                                         Padding="8,0,0,0"
-                                                        FontSize="16"
+                                                        FontSize="20"
                                                         HorizontalOptions="End"
                                                         Text="↕"
                                                         VerticalOptions="Center">
@@ -132,56 +131,49 @@
                     Command="{Binding AddQuestCommand}"
                     CommandParameter="NeonRed"
                     CornerRadius="12"
-                    Text="+"
-                    TextColor="White" />
+                    Text="+" />
                 <Button
                     Grid.Column="1"
                     BackgroundColor="{StaticResource Rainbow1}"
                     Command="{Binding AddQuestCommand}"
                     CommandParameter="NeonOrange"
                     CornerRadius="12"
-                    Text="+"
-                    TextColor="White" />
+                    Text="+" />
                 <Button
                     Grid.Column="2"
                     BackgroundColor="{StaticResource Rainbow2}"
                     Command="{Binding AddQuestCommand}"
                     CommandParameter="NeonYellow"
                     CornerRadius="12"
-                    Text="+"
-                    TextColor="Black" />
+                    Text="+" />
                 <Button
                     Grid.Column="3"
                     BackgroundColor="{StaticResource Rainbow3}"
                     Command="{Binding AddQuestCommand}"
                     CommandParameter="CyberGreen"
                     CornerRadius="12"
-                    Text="+"
-                    TextColor="Black" />
+                    Text="+" />
                 <Button
                     Grid.Column="4"
                     BackgroundColor="{StaticResource Rainbow4}"
                     Command="{Binding AddQuestCommand}"
                     CommandParameter="ElectricBlue"
                     CornerRadius="12"
-                    Text="+"
-                    TextColor="White" />
+                    Text="+" />
                 <Button
                     Grid.Column="5"
                     BackgroundColor="{StaticResource Rainbow5}"
                     Command="{Binding AddQuestCommand}"
                     CommandParameter="Ultraviolet"
                     CornerRadius="12"
-                    Text="+"
-                    TextColor="White" />
+                    Text="+" />
                 <Button
                     Grid.Column="6"
                     BackgroundColor="{StaticResource Rainbow6}"
                     Command="{Binding AddQuestCommand}"
                     CommandParameter="SteelGray"
                     CornerRadius="12"
-                    Text="+"
-                    TextColor="White" />
+                    Text="+" />
             </Grid>
         </Frame>
     </Grid>

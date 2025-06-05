@@ -47,11 +47,11 @@
     <!-- Sehr helles Creme, wie Bastelpapier -->
 
     <!-- AddQuest-Frame Hintergrund -->
-    <Color x:Key="BackgroundAddQuest">#DDDDDDDD</Color>
+    <Color x:Key="BackgroundAddQuest">#99EEEEEE</Color>
     <!-- Warmer, leicht gelblicher Pastellton -->
 
     <!-- AddQuest-Frame Rahmen -->
-    <Color x:Key="BorderAddQuest">#E7D8B9</Color>
+    <Color x:Key="BorderAddQuest">#CCCCCC</Color>
     <!-- Dezentes Hellbraun -->
 
     <!-- Highlight-Farben -->
