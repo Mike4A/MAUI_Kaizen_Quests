@@ -5,7 +5,8 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:viewModels="clr-namespace:Kaizen_Quests.ViewModels"
     x:Name="MainPageRef"
-    Shell.NavBarIsVisible="False">
+    Shell.NavBarIsVisible="False"
+    BackgroundColor="{StaticResource BackgroundMain}">
 
     <ContentPage.BindingContext>
         <viewModels:MainViewModel />
@@ -16,6 +17,7 @@
                     Margin="12,12,12,0"
                     Padding="0"
                     CornerRadius="25"
+                    BackgroundColor="{StaticResource BackgroundMain}"
                     BorderColor="Transparent">
                     <!--  Quest-Liste  -->
                     <CollectionView ItemsSource="{Binding Quests}">
@@ -112,7 +114,7 @@
                                                             </Frame.GestureRecognizers>
 
                                                             <Label
-                                                                FontSize="20"
+                                                                FontSize="16"
                                                                 HorizontalOptions="Center"
                                                                 Text="+"
                                                                 TextColor="Gray"
@@ -163,7 +165,7 @@
                     Command="{Binding AddQuestCommand}"
                     CommandParameter="0"
                     CornerRadius="12"
-                    FontSize="20"
+                    FontSize="16"
                     Text="+"
                     TextColor="Gray" />
                 <Button
@@ -173,7 +175,7 @@
                     Command="{Binding AddQuestCommand}"
                     CommandParameter="1"
                     CornerRadius="12"
-                    FontSize="20"
+                    FontSize="16"
                     Text="+"
                     TextColor="Gray" />
                 <Button
@@ -183,7 +185,7 @@
                     Command="{Binding AddQuestCommand}"
                     CommandParameter="2"
                     CornerRadius="12"
-                    FontSize="20"
+                    FontSize="16"
                     Text="+"
                     TextColor="Gray" />
                 <Button
@@ -193,7 +195,7 @@
                     Command="{Binding AddQuestCommand}"
                     CommandParameter="3"
                     CornerRadius="12"
-                    FontSize="20"
+                    FontSize="16"
                     Text="+"
                     TextColor="Gray" />
                 <Button
@@ -203,7 +205,7 @@
                     Command="{Binding AddQuestCommand}"
                     CommandParameter="4"
                     CornerRadius="12"
-                    FontSize="20"
+                    FontSize="16"
                     Text="+"
                     TextColor="Gray" />
                 <Button
@@ -213,7 +215,7 @@
                     Command="{Binding AddQuestCommand}"
                     CommandParameter="5"
                     CornerRadius="12"
-                    FontSize="20"
+                    FontSize="16"
                     Text="+"
                     TextColor="Gray" />
                 <Button
@@ -223,7 +225,7 @@
                     Command="{Binding AddQuestCommand}"
                     CommandParameter="6"
                     CornerRadius="12"
-                    FontSize="20"
+                    FontSize="16"
                     Text="+"
                     TextColor="Gray" />
             </Grid>
