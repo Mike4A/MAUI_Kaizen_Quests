@@ -26,43 +26,42 @@
     <Color x:Key="Gray900">#212121</Color>
     <Color x:Key="Gray950">#141414</Color>
 
-    <!-- Pastellige, weiche Regenbogenfarben (AddQuest-Schublade: warm → kalt) -->
-    <Color x:Key="Rainbow0">#FAD4D4</Color>
-    <!-- Zartes Rosa (warm) -->
-    <Color x:Key="Rainbow1">#FCE9B7</Color>
-    <!-- Sanftes Hellgelb -->
-    <Color x:Key="Rainbow2">#FFF1C6</Color>
-    <!-- Helles Pastellgelb -->
-    <Color x:Key="Rainbow3">#D8F3DC</Color>
-    <!-- Zartes Minzgrün -->
-    <Color x:Key="Rainbow4">#A8DADC</Color>
-    <!-- Sanftes Türkis -->
-    <Color x:Key="Rainbow5">#90E0EF</Color>
-    <!-- Helles Himmelblau -->
-    <Color x:Key="Rainbow6">#B4C6E7</Color>
-    <!-- Pastelliges Blau (kühl) -->
+    <Color x:Key="Rainbow0">#F9D4D4</Color>
+    <!-- HSL(0, 60%, 85%) -->
+    <Color x:Key="Rainbow1">#F9E7D4</Color>
+    <!-- HSL(45, 60%, 85%) -->
+    <Color x:Key="Rainbow2">#F5F9D4</Color>
+    <!-- HSL(90, 60%, 85%) -->
+    <Color x:Key="Rainbow3">#D4F9DD</Color>
+    <!-- HSL(135, 60%, 85%) -->
+    <Color x:Key="Rainbow4">#D4F1F9</Color>
+    <!-- HSL(180, 60%, 85%) -->
+    <Color x:Key="Rainbow5">#D4DDF9</Color>
+    <!-- HSL(225, 60%, 85%) -->
+    <Color x:Key="Rainbow6">#E6D4F9</Color>
+    <!-- HSL(270, 60%, 85%) -->
 
-    <!-- Hauptseiten-Hintergrund -->
+    <!-- Main page background -->
     <Color x:Key="BackgroundMain">#FFF9F4</Color>
-    <!-- Sehr helles Creme, wie Bastelpapier -->
+    <!-- Very light cream, like craft paper -->
 
-    <!-- AddQuest-Frame Hintergrund -->
+    <!-- AddQuest frame background -->
     <Color x:Key="BackgroundAddQuest">#99EEEEEE</Color>
-    <!-- Warmer, leicht gelblicher Pastellton -->
+    <!-- Warm, slightly yellowish pastel tone -->
 
-    <!-- AddQuest-Frame Rahmen -->
+    <!-- AddQuest frame border -->
     <Color x:Key="BorderAddQuest">#CCCCCC</Color>
-    <!-- Dezentes Hellbraun -->
+    <!-- Subtle light brown -->
 
-    <!-- AddGoal-Hintergrund -->
+    <!-- AddGoal background -->
     <Color x:Key="BackgroundAddGoal">#44FFFFFF</Color>
-    <!-- Sehr helles Creme, wie Bastelpapier -->
+    <!-- Very light cream -->
 
-    <!-- Highlight-Farben -->
+    <!-- Highlight colors -->
     <Color x:Key="HighlightSoft">#C5D7BD</Color>
-    <!-- Weiches Blassgrün -->
+    <!-- Soft pale green -->
     <Color x:Key="HighlightAccent">#9DB4A6</Color>
-    <!-- Gedämpftes Salbeigrün -->
+    <!-- Muted sage green -->
 
     <SolidColorBrush x:Key="PrimaryBrush" Color="{StaticResource Primary}" />
     <SolidColorBrush x:Key="SecondaryBrush" Color="{StaticResource Secondary}" />
