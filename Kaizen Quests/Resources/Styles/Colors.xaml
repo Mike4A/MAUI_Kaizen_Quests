@@ -26,20 +26,20 @@
     <Color x:Key="Gray900">#212121</Color>
     <Color x:Key="Gray950">#141414</Color>
 
-    <Color x:Key="Rainbow0">#F9D4D4</Color>
-    <!-- HSL(0, 60%, 85%) -->
-    <Color x:Key="Rainbow1">#F9E7D4</Color>
-    <!-- HSL(45, 60%, 85%) -->
-    <Color x:Key="Rainbow2">#F5F9D4</Color>
-    <!-- HSL(90, 60%, 85%) -->
-    <Color x:Key="Rainbow3">#D4F9DD</Color>
-    <!-- HSL(135, 60%, 85%) -->
-    <Color x:Key="Rainbow4">#D4F1F9</Color>
-    <!-- HSL(180, 60%, 85%) -->
-    <Color x:Key="Rainbow5">#D4DDF9</Color>
-    <!-- HSL(225, 60%, 85%) -->
-    <Color x:Key="Rainbow6">#E6D4F9</Color>
-    <!-- HSL(270, 60%, 85%) -->
+    <Color x:Key="Rainbow0">#F9B3B3</Color>
+    <!-- HSL(0, 80%, 85%) -->
+    <Color x:Key="Rainbow1">#F9D8B3</Color>
+    <!-- HSL(45, 80%, 85%) -->
+    <Color x:Key="Rainbow2">#F3F9B3</Color>
+    <!-- HSL(90, 80%, 85%) -->
+    <Color x:Key="Rainbow3">#B3F9CB</Color>
+    <!-- HSL(135, 80%, 85%) -->
+    <Color x:Key="Rainbow4">#B3EDFA</Color>
+    <!-- HSL(180, 80%, 85%) -->
+    <Color x:Key="Rainbow5">#B3C5F9</Color>
+    <!-- HSL(225, 80%, 85%) -->
+    <Color x:Key="Rainbow6">#D8B3F9</Color>
+    <!-- HSL(270, 80%, 85%) -->
 
     <!-- Main page background -->
     <Color x:Key="BackgroundMain">#FFF9F4</Color>

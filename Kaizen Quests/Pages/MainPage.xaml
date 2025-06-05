@@ -114,7 +114,7 @@
                                                             </Frame.GestureRecognizers>
 
                                                             <Label
-                                                                FontSize="16"
+                                                                FontSize="14"
                                                                 HorizontalOptions="Center"
                                                                 Text="+"
                                                                 TextColor="Gray"
@@ -165,7 +165,7 @@
                     Command="{Binding AddQuestCommand}"
                     CommandParameter="0"
                     CornerRadius="12"
-                    FontSize="16"
+                    FontSize="14"
                     Text="+"
                     TextColor="Gray" />
                 <Button
@@ -175,7 +175,7 @@
                     Command="{Binding AddQuestCommand}"
                     CommandParameter="1"
                     CornerRadius="12"
-                    FontSize="16"
+                    FontSize="14"
                     Text="+"
                     TextColor="Gray" />
                 <Button
@@ -185,7 +185,7 @@
                     Command="{Binding AddQuestCommand}"
                     CommandParameter="2"
                     CornerRadius="12"
-                    FontSize="16"
+                    FontSize="14"
                     Text="+"
                     TextColor="Gray" />
                 <Button
@@ -195,7 +195,7 @@
                     Command="{Binding AddQuestCommand}"
                     CommandParameter="3"
                     CornerRadius="12"
-                    FontSize="16"
+                    FontSize="14"
                     Text="+"
                     TextColor="Gray" />
                 <Button
@@ -205,7 +205,7 @@
                     Command="{Binding AddQuestCommand}"
                     CommandParameter="4"
                     CornerRadius="12"
-                    FontSize="16"
+                    FontSize="14"
                     Text="+"
                     TextColor="Gray" />
                 <Button
@@ -215,7 +215,7 @@
                     Command="{Binding AddQuestCommand}"
                     CommandParameter="5"
                     CornerRadius="12"
-                    FontSize="16"
+                    FontSize="14"
                     Text="+"
                     TextColor="Gray" />
                 <Button
@@ -225,7 +225,7 @@
                     Command="{Binding AddQuestCommand}"
                     CommandParameter="6"
                     CornerRadius="12"
-                    FontSize="16"
+                    FontSize="14"
                     Text="+"
                     TextColor="Gray" />
             </Grid>
