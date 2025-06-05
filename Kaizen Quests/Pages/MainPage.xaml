@@ -23,11 +23,10 @@
                                 Padding="12"
                                 BackgroundColor="{Binding Color}"
                                 BorderColor="#88888888"
-                                HasShadow="True"
-                                CornerRadius="24">
+                                CornerRadius="24"
+                                HasShadow="True">
 
                                 <VerticalStackLayout>
-
                                     <!--  Quest-Header mit Grid  -->
                                     <Grid
                                         Padding="0"
@@ -60,33 +59,58 @@
                                     <CollectionView ItemsSource="{Binding Goals}">
                                         <CollectionView.ItemTemplate>
                                             <DataTemplate>
-                                                <Grid ColumnDefinitions="Auto, *, Auto" VerticalOptions="Center">
-
-                                                    <CheckBox
-                                                        Grid.Column="0"
-                                                        IsChecked="{Binding IsCompleted}"
-                                                        VerticalOptions="Center"
-                                                        Color="Black" />
-
-                                                    <Entry
-                                                        Grid.Column="1"
-                                                        FontSize="14"
-                                                        Placeholder="Zielbeschreibung"
-                                                        Text="{Binding Description}" />
-
-
-                                                    <Label
-                                                        Grid.Column="2"
-                                                        Padding="8,0,0,0"
-                                                        FontSize="20"
-                                                        HorizontalOptions="End"
-                                                        Text="↕"
+                                                <Grid>
+                                                    <!--  Regular Goal  -->
+                                                    <Grid
+                                                        ColumnDefinitions="Auto, *, Auto"
+                                                        IsVisible="{Binding IsRegularGoal}"
                                                         VerticalOptions="Center">
-                                                        <Label.GestureRecognizers>
-                                                            <DragGestureRecognizer DragStartingCommand="{Binding BindingContext.StartGoalDragCommand, Source={x:Reference MainPageRef}}" DragStartingCommandParameter="{Binding}" />
-                                                        </Label.GestureRecognizers>
-                                                    </Label>
 
+                                                        <CheckBox
+                                                            Grid.Column="0"
+                                                            IsChecked="{Binding IsCompleted}"
+                                                            VerticalOptions="Center"
+                                                            Color="Black" />
+
+                                                        <Entry
+                                                            Grid.Column="1"
+                                                            FontSize="14"
+                                                            Placeholder="Zielbeschreibung"
+                                                            Text="{Binding Description}" />
+
+                                                        <Label
+                                                            Grid.Column="2"
+                                                            Padding="8,0,0,0"
+                                                            FontSize="20"
+                                                            HorizontalOptions="End"
+                                                            Text="↕"
+                                                            VerticalOptions="Center">
+                                                            <Label.GestureRecognizers>
+                                                                <DragGestureRecognizer DragStartingCommand="{Binding BindingContext.StartGoalDragCommand, Source={x:Reference MainPageRef}}" DragStartingCommandParameter="{Binding}" />
+                                                            </Label.GestureRecognizers>
+                                                        </Label>
+                                                    </Grid>
+
+                                                    <!--  AddGoal Goal  -->
+                                                    <Frame
+                                                        BackgroundColor="{StaticResource BackgroundAddGoal}"
+                                                        CornerRadius="24"
+                                                        HeightRequest="1"
+                                                        IsVisible="{Binding IsAddGoal}"
+                                                        VerticalOptions="Center">
+
+                                                        <Frame.GestureRecognizers>
+                                                            <TapGestureRecognizer Command="{Binding BindingContext.AddGoalTappedCommand, Source={x:Reference MainPageRef}}" CommandParameter="{Binding BindingContext, Source={x:Reference MainPageRef}}" />
+                                                        </Frame.GestureRecognizers>
+
+                                                        <Label
+                                                            FontSize="20"
+                                                            HorizontalOptions="Center"
+                                                            Text="+"
+                                                            TextColor="Gray"
+                                                            VerticalOptions="Center"
+                                                            VerticalTextAlignment="Center" />
+                                                    </Frame>
                                                 </Grid>
                                             </DataTemplate>
                                         </CollectionView.ItemTemplate>
@@ -102,6 +126,7 @@
         </ScrollView>
 
         <Frame
+            Grid.Row="1"
             Margin="10"
             Padding="10"
             AbsoluteLayout.LayoutBounds="0,1,1,90"
@@ -128,55 +153,75 @@
                 <Button
                     Grid.Column="0"
                     BackgroundColor="{StaticResource Rainbow0}"
+                    BorderColor="{StaticResource BorderAddQuest}"
                     Command="{Binding AddQuestCommand}"
-                    CommandParameter="NeonRed"
+                    CommandParameter="0"
                     CornerRadius="12"
-                    Text="+" />
+                    FontSize="20"
+                    Text="+"
+                    TextColor="Gray" />
                 <Button
                     Grid.Column="1"
                     BackgroundColor="{StaticResource Rainbow1}"
+                    BorderColor="{StaticResource BorderAddQuest}"
                     Command="{Binding AddQuestCommand}"
-                    CommandParameter="NeonOrange"
+                    CommandParameter="1"
                     CornerRadius="12"
-                    Text="+" />
+                    FontSize="20"
+                    Text="+"
+                    TextColor="Gray" />
                 <Button
                     Grid.Column="2"
                     BackgroundColor="{StaticResource Rainbow2}"
+                    BorderColor="{StaticResource BorderAddQuest}"
                     Command="{Binding AddQuestCommand}"
-                    CommandParameter="NeonYellow"
+                    CommandParameter="2"
                     CornerRadius="12"
-                    Text="+" />
+                    FontSize="20"
+                    Text="+"
+                    TextColor="Gray" />
                 <Button
                     Grid.Column="3"
                     BackgroundColor="{StaticResource Rainbow3}"
+                    BorderColor="{StaticResource BorderAddQuest}"
                     Command="{Binding AddQuestCommand}"
-                    CommandParameter="CyberGreen"
+                    CommandParameter="3"
                     CornerRadius="12"
-                    Text="+" />
+                    FontSize="20"
+                    Text="+"
+                    TextColor="Gray" />
                 <Button
                     Grid.Column="4"
                     BackgroundColor="{StaticResource Rainbow4}"
+                    BorderColor="{StaticResource BorderAddQuest}"
                     Command="{Binding AddQuestCommand}"
-                    CommandParameter="ElectricBlue"
+                    CommandParameter="4"
                     CornerRadius="12"
-                    Text="+" />
+                    FontSize="20"
+                    Text="+"
+                    TextColor="Gray" />
                 <Button
                     Grid.Column="5"
                     BackgroundColor="{StaticResource Rainbow5}"
+                    BorderColor="{StaticResource BorderAddQuest}"
                     Command="{Binding AddQuestCommand}"
-                    CommandParameter="Ultraviolet"
+                    CommandParameter="5"
                     CornerRadius="12"
-                    Text="+" />
+                    FontSize="20"
+                    Text="+"
+                    TextColor="Gray" />
                 <Button
                     Grid.Column="6"
                     BackgroundColor="{StaticResource Rainbow6}"
+                    BorderColor="{StaticResource BorderAddQuest}"
                     Command="{Binding AddQuestCommand}"
-                    CommandParameter="SteelGray"
+                    CommandParameter="6"
                     CornerRadius="12"
-                    Text="+" />
+                    FontSize="20"
+                    Text="+"
+                    TextColor="Gray" />
             </Grid>
         </Frame>
     </Grid>
-
 
 </ContentPage>

@@ -14,7 +14,8 @@ namespace Kaizen_Quests.ViewModels
 
         public MainViewModel()
         {
-            AddQuestCommand = new Command(AddQuest);
+            AddQuestCommand = new Command<object>(AddQuest);
+            //Test Data
             Quests.Add(new QuestViewModel(new Quest
             {
                 Title = "Learn C#",
@@ -67,8 +68,25 @@ namespace Kaizen_Quests.ViewModels
             }));
         }
 
-        private static string GetRandomColorHexStringFromResourcePalette()
-        {            
+        private void AddQuest(object param)
+        {
+            if (param is not string indexString || !int.TryParse(indexString, out int index))
+                return;
+
+            string colorKey = $"Rainbow{index}";
+            string color = ((Color)Application.Current!.Resources[colorKey]).ToHex();
+
+            Quest newQuest = new()
+            {
+                Color = color,
+                Goals = [new Goal { IsAddGoal = true }]
+            };
+
+            Quests.Add(new QuestViewModel(newQuest));
+        }
+
+        private string GetRandomColorHexStringFromResourcePalette()
+        {
             string name = $"Rainbow{RngHelper.Random.Next(8)}";
             return ((Color)Application.Current!.Resources[name]).ToHex();
         }
@@ -78,17 +96,6 @@ namespace Kaizen_Quests.ViewModels
         protected virtual void OnPropertyChanged(string propertyName)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-        }
-
-        private void AddQuest()
-        {
-            var newQuest = new Quest
-            {
-                Title = "Neue Quest",
-                Color = "#e74c3c"
-            };
-            Quests.Add(new QuestViewModel(newQuest));
-
         }
     }
 }

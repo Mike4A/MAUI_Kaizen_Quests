@@ -54,6 +54,10 @@
     <Color x:Key="BorderAddQuest">#CCCCCC</Color>
     <!-- Dezentes Hellbraun -->
 
+    <!-- AddGoal-Hintergrund -->
+    <Color x:Key="BackgroundAddGoal">#44FFFFFF</Color>
+    <!-- Sehr helles Creme, wie Bastelpapier -->
+
     <!-- Highlight-Farben -->
     <Color x:Key="HighlightSoft">#C5D7BD</Color>
     <!-- Weiches Blassgrün -->
