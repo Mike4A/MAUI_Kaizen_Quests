@@ -1,4 +1,4 @@
-﻿namespace Kaizen_Quests
+﻿namespace MauiApp1
 {
     public partial class MainPage : ContentPage
     {
