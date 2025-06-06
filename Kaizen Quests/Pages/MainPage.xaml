@@ -5,28 +5,28 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:viewModels="clr-namespace:Kaizen_Quests.ViewModels"
     x:Name="MainPageRef"
-    BackgroundColor="{StaticResource BackgroundMain}"
+    BackgroundColor="{StaticResource BackgroundGlassHarder}"
     Shell.NavBarIsVisible="False">
     <ContentPage.BindingContext>
         <viewModels:MainViewModel />
     </ContentPage.BindingContext>
     <Grid RowDefinitions="*,Auto">
         <Border
-            Margin="12,12,12,0"
+            Margin="9,9,9,0"
             Padding="0"
             BackgroundColor="{StaticResource BackgroundMain}"
-            Stroke="Transparent"
-            StrokeShape="RoundRectangle 21">
+            Stroke="{StaticResource BorderGlass}"
+            StrokeShape="RoundRectangle 26">
             <!--  Quest-Liste  -->
             <CollectionView ItemsSource="{Binding Quests}">
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
                         <Border
                             x:Name="QuestFrame"
-                            Margin="0,0,0,12"
+                            Margin="6"
                             Padding="9"
                             BackgroundColor="{Binding Color}"
-                            Stroke="{StaticResource Gray500}"
+                            Stroke="{StaticResource BorderGlass}"
                             StrokeShape="RoundRectangle 20">
                             <Border.GestureRecognizers>
                                 <DragGestureRecognizer DragStartingCommand="{Binding BindingContext.StartQuestDragCommand, Source={x:Reference MainPageRef}}" DragStartingCommandParameter="{Binding}" />
@@ -113,12 +113,12 @@
         </Border>
         <Border
             Grid.Row="1"
-            Margin="10"
-            Padding="10"
-            BackgroundColor="{StaticResource BackgroundGlass}"
-            Stroke="{StaticResource Gray500}"
+            Margin="9"
+            Padding="9"
+            BackgroundColor="{StaticResource BackgroundMain}"
+            Stroke="{StaticResource BorderGlass}"
             StrokeShape="RoundRectangle 20">
-            <Grid ColumnSpacing="8">
+            <Grid ColumnSpacing="6">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*" />
                     <ColumnDefinition Width="*" />

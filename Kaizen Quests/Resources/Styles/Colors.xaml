@@ -44,7 +44,8 @@
     <Color x:Key="BackgroundMain">#FFF9F4</Color>
     <Color x:Key="BackgroundGlass">#88EEEEEE</Color>
     <Color x:Key="BackgroundGlassSofter">#44FFFFFF</Color>
-    <Color x:Key="BorderGlass">#CCCCCC</Color>    
+    <Color x:Key="BackgroundGlassHarder">#EEEEEE</Color>
+    <Color x:Key="BorderGlass">#CCCCCC</Color>
     <Color x:Key="HighlightSoft">#C5D7BD</Color>
     <Color x:Key="HighlightAccent">#9DB4A6</Color>
 
