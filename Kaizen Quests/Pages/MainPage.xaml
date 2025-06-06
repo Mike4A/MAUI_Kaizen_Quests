@@ -98,6 +98,7 @@
                                                         VerticalOptions="Center">
                                                         <Label.GestureRecognizers>
                                                             <DragGestureRecognizer DragStartingCommand="{Binding BindingContext.StartGoalDragCommand, Source={x:Reference MainPageRef}}" DragStartingCommandParameter="{Binding}" />
+                                                            <DropGestureRecognizer DropCommand="{Binding BindingContext.GoalDropCommand, Source={x:Reference MainPageRef}}" DropCommandParameter="{Binding}" />
                                                         </Label.GestureRecognizers>
                                                     </Label>
                                                 </Grid>

@@ -8,7 +8,6 @@ namespace Kaizen_Quests.ViewModels
     public class MainViewModel : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler? PropertyChanged;
-
         protected virtual void OnPropertyChanged(string propertyName)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
@@ -20,8 +19,12 @@ namespace Kaizen_Quests.ViewModels
         public ICommand AddGoalCommand { get; }
         public ICommand StartQuestDragCommand { get; }
         public ICommand QuestDropCommand { get; }
+        public ICommand StartGoalDragCommand { get; }
+        public ICommand GoalDropCommand { get; }
 
         private QuestViewModel? _dragSourceQuest;
+        private GoalViewModel? _dragSourceGoal;
+        private QuestViewModel? _dragSourceGoalParent;
 
         public MainViewModel()
         {
@@ -29,13 +32,8 @@ namespace Kaizen_Quests.ViewModels
             AddGoalCommand = new Command<QuestViewModel>(AddGoal);
             StartQuestDragCommand = new Command<QuestViewModel>(StartQuestDrag);
             QuestDropCommand = new Command<QuestViewModel>(QuestDrop);
-        }
-
-        private void QuestDrop(QuestViewModel dropDestionationQuest)
-        {
-            if (dropDestionationQuest == null || _dragSourceQuest == null || _dragSourceQuest == dropDestionationQuest)
-                return;
-            Quests.Move(Quests.IndexOf(_dragSourceQuest), Quests.IndexOf(dropDestionationQuest));
+            StartGoalDragCommand = new Command<GoalViewModel>(StartGoalDrag);
+            GoalDropCommand = new Command<GoalViewModel>(GoalDrop);
         }
 
         private void StartQuestDrag(QuestViewModel dragSourceQuest)
@@ -43,6 +41,41 @@ namespace Kaizen_Quests.ViewModels
             if (dragSourceQuest == null)
                 return;
             _dragSourceQuest = dragSourceQuest;
+        }
+        private void QuestDrop(QuestViewModel dropDestionationQuest)
+        {
+            if (dropDestionationQuest == null || _dragSourceQuest == null || _dragSourceQuest == dropDestionationQuest)
+                return;
+            Quests.Move(Quests.IndexOf(_dragSourceQuest), Quests.IndexOf(dropDestionationQuest));
+        }
+
+        private void StartGoalDrag(GoalViewModel dragSourceGoal)
+        {
+            if (dragSourceGoal == null)
+                return;
+            _dragSourceGoal = dragSourceGoal;
+            _dragSourceGoalParent = FindParentQuest(dragSourceGoal);
+        }
+        private void GoalDrop(GoalViewModel dropDestionationGoal)
+        {
+            if (dropDestionationGoal == null || _dragSourceGoal == null || _dragSourceGoal == dropDestionationGoal)
+                return;
+            QuestViewModel? dropDestionationGoalParent = FindParentQuest(dropDestionationGoal);
+            if (_dragSourceGoalParent == null || dropDestionationGoalParent == null)
+                return;
+            dropDestionationGoalParent.Goals.Insert(dropDestionationGoalParent.Goals.IndexOf(dropDestionationGoal) + 1, _dragSourceGoal);
+            _dragSourceGoalParent.Goals.Remove(_dragSourceGoal);
+        }
+        private QuestViewModel? FindParentQuest(GoalViewModel goal)
+        {
+            foreach (QuestViewModel quest in Quests)
+            {
+                if (quest.Goals.Contains(goal))
+                {
+                    return quest;
+                }
+            }
+            return null;
         }
 
         private void AddQuest(object param)
