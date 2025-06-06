@@ -18,11 +18,31 @@ namespace Kaizen_Quests.ViewModels
 
         public ICommand AddQuestCommand { get; }
         public ICommand AddGoalCommand { get; }
+        public ICommand StartQuestDragCommand { get; }
+        public ICommand QuestDropCommand { get; }
+
+        private QuestViewModel? _dragSourceQuest;
 
         public MainViewModel()
         {
             AddQuestCommand = new Command<object>(AddQuest);
             AddGoalCommand = new Command<QuestViewModel>(AddGoal);
+            StartQuestDragCommand = new Command<QuestViewModel>(StartQuestDrag);
+            QuestDropCommand = new Command<QuestViewModel>(QuestDrop);
+        }
+
+        private void QuestDrop(QuestViewModel dropDestionationQuest)
+        {
+            if (dropDestionationQuest == null || _dragSourceQuest == null || _dragSourceQuest == dropDestionationQuest)
+                return;
+            Quests.Move(Quests.IndexOf(_dragSourceQuest), Quests.IndexOf(dropDestionationQuest));
+        }
+
+        private void StartQuestDrag(QuestViewModel dragSourceQuest)
+        {
+            if (dragSourceQuest == null)
+                return;
+            _dragSourceQuest = dragSourceQuest;
         }
 
         private void AddQuest(object param)
@@ -51,6 +71,6 @@ namespace Kaizen_Quests.ViewModels
                 addGoalIndex = questViewModel.Goals.Count;
 
             questViewModel.Goals.Insert(addGoalIndex, new GoalViewModel(new Goal()));
-        }        
+        }
     }
 }
