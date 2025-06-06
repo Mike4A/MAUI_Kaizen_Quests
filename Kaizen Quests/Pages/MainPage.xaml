@@ -56,11 +56,11 @@
                                             <Grid>
                                                 <!--  Regular Goal  -->
                                                 <Border
-                                                    BackgroundColor="{StaticResource BackgroundAddGoal}"
+                                                    BackgroundColor="{StaticResource BackgroundGlassSofter}"
                                                     IsVisible="{Binding IsRegularGoal}"
                                                     Stroke="{StaticResource BorderGlass}"
                                                     StrokeShape="RoundRectangle 0">
-                                                    <HorizontalStackLayout>
+                                                    <Grid ColumnDefinitions="Auto,*">
                                                         <CheckBox
                                                             Grid.Column="0"
                                                             Margin="6"
@@ -81,12 +81,12 @@
                                                                 <DropGestureRecognizer DropCommand="{Binding BindingContext.GoalDropCommand, Source={x:Reference MainPageRef}}" DropCommandParameter="{Binding}" />
                                                             </Label.GestureRecognizers>
                                                         </Label>
-                                                    </HorizontalStackLayout>
+                                                    </Grid>
                                                 </Border>
                                                 <!--  AddGoal Goal  -->
                                                 <Border
-                                                    Padding="3"
-                                                    BackgroundColor="{StaticResource BackgroundAddGoal}"
+                                                    Padding="4"
+                                                    BackgroundColor="{StaticResource BackgroundGlassSofter}"
                                                     IsVisible="{Binding IsAddGoal}"
                                                     Stroke="{StaticResource BorderGlass}"
                                                     StrokeShape="RoundRectangle 0,0,24,24">

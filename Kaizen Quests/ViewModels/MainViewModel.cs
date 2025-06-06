@@ -41,9 +41,11 @@ namespace Kaizen_Quests.ViewModels
             if (dragSourceQuest == null)
                 return;
             _dragSourceQuest = dragSourceQuest;
+            _dragSourceGoal = null; // Reset goal drag source when starting quest drag
+            _dragSourceGoalParent = null; // Reset goal parent when starting quest drag
         }
         private void QuestDrop(QuestViewModel dropDestionationQuest)
-        {
+        {            
             if (dropDestionationQuest == null || _dragSourceQuest == null || _dragSourceQuest == dropDestionationQuest)
                 return;
             Quests.Move(Quests.IndexOf(_dragSourceQuest), Quests.IndexOf(dropDestionationQuest));
@@ -55,6 +57,7 @@ namespace Kaizen_Quests.ViewModels
                 return;
             _dragSourceGoal = dragSourceGoal;
             _dragSourceGoalParent = FindParentQuest(dragSourceGoal);
+            _dragSourceQuest = null; // Reset quest drag source when starting goal drag
         }
         private void GoalDrop(GoalViewModel dropDestionationGoal)
         {
