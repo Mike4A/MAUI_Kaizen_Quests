@@ -58,13 +58,18 @@ namespace Kaizen_Quests.ViewModels
         }
         private void GoalDrop(GoalViewModel dropDestionationGoal)
         {
-            if (dropDestionationGoal == null || _dragSourceGoal == null || _dragSourceGoal == dropDestionationGoal)
+            if (dropDestionationGoal == null ||
+                _dragSourceGoal == null ||
+                _dragSourceGoal == dropDestionationGoal)
                 return;
             QuestViewModel? dropDestionationGoalParent = FindParentQuest(dropDestionationGoal);
-            if (_dragSourceGoalParent == null || dropDestionationGoalParent == null)
+            if (_dragSourceGoalParent == null ||
+                dropDestionationGoalParent == null ||
+                _dragSourceGoalParent != dropDestionationGoalParent)
                 return;
-            dropDestionationGoalParent.Goals.Insert(dropDestionationGoalParent.Goals.IndexOf(dropDestionationGoal) + 1, _dragSourceGoal);
-            _dragSourceGoalParent.Goals.Remove(_dragSourceGoal);
+            int oldIndex = _dragSourceGoalParent.Goals.IndexOf(_dragSourceGoal);
+            int newIndex = _dragSourceGoalParent.Goals.IndexOf(dropDestionationGoal);
+            _dragSourceGoalParent.Goals.Move(oldIndex, newIndex);
         }
         private QuestViewModel? FindParentQuest(GoalViewModel goal)
         {
@@ -78,32 +83,27 @@ namespace Kaizen_Quests.ViewModels
             return null;
         }
 
-        private void AddQuest(object param)
+        private void AddQuest(object colorIndexString)
         {
-            if (param is not string indexString || !int.TryParse(indexString, out int index))
+            if (colorIndexString is not string || !int.TryParse(colorIndexString as string, out int index))
                 return;
-
             string colorKey = $"Rainbow{index}";
             string color = ((Color)Application.Current!.Resources[colorKey]).ToHex();
-
             Quest newQuest = new()
             {
+                Title = "Quest-Titel",
                 Color = color,
                 Goals = [new Goal { IsAddGoal = true }]
             };
-
             Quests.Add(new QuestViewModel(newQuest));
         }
         private void AddGoal(QuestViewModel questViewModel)
         {
             if (questViewModel == null)
                 return;
-
-            int addGoalIndex = questViewModel.Goals.ToList().FindIndex(g => g.IsAddGoal);
-            if (addGoalIndex == -1)
-                addGoalIndex = questViewModel.Goals.Count;
-
-            questViewModel.Goals.Insert(addGoalIndex, new GoalViewModel(new Goal()));
+            int index = questViewModel.Goals.ToList().FindIndex(g => g.IsAddGoal);
+            Goal goal = new Goal() { Description = "Ziel-Beschreibung" };
+            questViewModel.Goals.Insert(index, new GoalViewModel(goal));
         }
     }
 }
