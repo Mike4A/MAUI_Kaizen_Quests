@@ -28,6 +28,10 @@
                             BackgroundColor="{Binding Color}"
                             Stroke="{StaticResource Gray500}"
                             StrokeShape="RoundRectangle 20">
+                            <Border.GestureRecognizers>
+                                <DragGestureRecognizer DragStartingCommand="{Binding BindingContext.StartQuestDragCommand, Source={x:Reference MainPageRef}}" DragStartingCommandParameter="{Binding}" />
+                                <DropGestureRecognizer DropCommand="{Binding BindingContext.QuestDropCommand, Source={x:Reference MainPageRef}}" DropCommandParameter="{Binding}" />
+                            </Border.GestureRecognizers>
                             <VerticalStackLayout>
                                 <!--  Quest-Header mit Grid  -->
                                 <Border
@@ -42,12 +46,8 @@
                                         HorizontalTextAlignment="Center"
                                         Text="{Binding Title}"
                                         TextColor="{StaticResource Gray600}"
-                                        VerticalTextAlignment="Center">
-                                        <Label.GestureRecognizers>
-                                            <DragGestureRecognizer DragStartingCommand="{Binding BindingContext.StartQuestDragCommand, Source={x:Reference MainPageRef}}" DragStartingCommandParameter="{Binding}" />
-                                            <DropGestureRecognizer DropCommand="{Binding BindingContext.QuestDropCommand, Source={x:Reference MainPageRef}}" DropCommandParameter="{Binding}" />
-                                        </Label.GestureRecognizers>
-                                    </Label>
+                                        VerticalTextAlignment="Center" />
+
                                 </Border>
                                 <!--  Goals CollectionView  -->
                                 <CollectionView ItemsSource="{Binding Goals}">
@@ -56,18 +56,23 @@
                                             <Grid>
                                                 <!--  Regular Goal  -->
                                                 <Border
+                                                    Padding="0,0,0,0"
                                                     BackgroundColor="{StaticResource BackgroundGlassSofter}"
                                                     IsVisible="{Binding IsRegularGoal}"
                                                     Stroke="{StaticResource BorderGlass}"
                                                     StrokeShape="RoundRectangle 0">
+                                                    <Border.GestureRecognizers>
+                                                        <DragGestureRecognizer DragStartingCommand="{Binding BindingContext.StartGoalDragCommand, Source={x:Reference MainPageRef}}" DragStartingCommandParameter="{Binding}" />
+                                                        <DropGestureRecognizer DropCommand="{Binding BindingContext.GoalDropCommand, Source={x:Reference MainPageRef}}" DropCommandParameter="{Binding}" />
+                                                    </Border.GestureRecognizers>
                                                     <Grid ColumnDefinitions="Auto,*">
                                                         <CheckBox
                                                             Grid.Column="0"
                                                             Margin="6"
-                                                            HeightRequest="20"
+                                                            HeightRequest="18"
                                                             IsChecked="{Binding IsCompleted}"
                                                             VerticalOptions="Center"
-                                                            WidthRequest="36"
+                                                            WidthRequest="20"
                                                             Color="{StaticResource Gray500}" />
                                                         <Label
                                                             Grid.Column="1"
@@ -75,12 +80,7 @@
                                                             HorizontalOptions="Fill"
                                                             Text="{Binding Description}"
                                                             TextColor="{StaticResource Gray600}"
-                                                            VerticalTextAlignment="Center">
-                                                            <Label.GestureRecognizers>
-                                                                <DragGestureRecognizer DragStartingCommand="{Binding BindingContext.StartGoalDragCommand, Source={x:Reference MainPageRef}}" DragStartingCommandParameter="{Binding}" />
-                                                                <DropGestureRecognizer DropCommand="{Binding BindingContext.GoalDropCommand, Source={x:Reference MainPageRef}}" DropCommandParameter="{Binding}" />
-                                                            </Label.GestureRecognizers>
-                                                        </Label>
+                                                            VerticalTextAlignment="Center" />
                                                     </Grid>
                                                 </Border>
                                                 <!--  AddGoal Goal  -->

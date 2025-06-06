@@ -61,6 +61,11 @@ namespace Kaizen_Quests.ViewModels
         }
         private void GoalDrop(GoalViewModel dropDestionationGoal)
         {
+            if (_dragSourceQuest != null && dropDestionationGoal != null)
+            {
+                QuestDrop(FindParentQuest(dropDestionationGoal)!);
+                return;
+            }                
             if (dropDestionationGoal == null ||
                 _dragSourceGoal == null ||
                 _dragSourceGoal == dropDestionationGoal)
