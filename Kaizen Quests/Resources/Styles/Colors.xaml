@@ -41,27 +41,12 @@
     <Color x:Key="Rainbow6">#D8B3F9</Color>
     <!-- HSL(270, 80%, 85%) -->
 
-    <!-- Main page background -->
     <Color x:Key="BackgroundMain">#FFF9F4</Color>
-    <!-- Very light cream, like craft paper -->
-
-    <!-- AddQuest frame background -->
-    <Color x:Key="BackgroundAddQuest">#99EEEEEE</Color>
-    <!-- Warm, slightly yellowish pastel tone -->
-
-    <!-- AddQuest frame border -->
-    <Color x:Key="BorderAddQuest">#CCCCCC</Color>
-    <!-- Subtle light brown -->
-
-    <!-- AddGoal background -->
-    <Color x:Key="BackgroundAddGoal">#44FFFFFF</Color>
-    <!-- Very light cream -->
-
-    <!-- Highlight colors -->
+    <Color x:Key="BackgroundGlass">#88EEEEEE</Color>
+    <Color x:Key="BackgroundGlassSofter">#44FFFFFF</Color>
+    <Color x:Key="BorderGlass">#CCCCCC</Color>    
     <Color x:Key="HighlightSoft">#C5D7BD</Color>
-    <!-- Soft pale green -->
     <Color x:Key="HighlightAccent">#9DB4A6</Color>
-    <!-- Muted sage green -->
 
     <SolidColorBrush x:Key="PrimaryBrush" Color="{StaticResource Primary}" />
     <SolidColorBrush x:Key="SecondaryBrush" Color="{StaticResource Secondary}" />
