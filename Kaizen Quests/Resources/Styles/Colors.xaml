@@ -41,13 +41,11 @@
     <Color x:Key="Rainbow6">#D8B3F9</Color>
     <!-- HSL(270, 80%, 85%) -->
 
-    <Color x:Key="BackgroundMain">#FFF9F4</Color>
-    <Color x:Key="BackgroundGlass">#88EEEEEE</Color>
-    <Color x:Key="BackgroundGlassSofter">#44FFFFFF</Color>
-    <Color x:Key="BackgroundGlassHarder">#EEEEEE</Color>
-    <Color x:Key="BorderGlass">#CCCCCC</Color>
-    <Color x:Key="HighlightSoft">#C5D7BD</Color>
-    <Color x:Key="HighlightAccent">#9DB4A6</Color>
+    <Color x:Key="BackgroundMainPage">#FFF9F4</Color>   
+    <Color x:Key="BackgroundMainFrame">#EEEEEE</Color>
+    <Color x:Key="BackgroundGlassBody">#44FFFFFF</Color>
+    <Color x:Key="BorderMainFrame">#AAAAAA</Color>
+    <Color x:Key="BorderGlassBody">#EEEEEE</Color>
 
     <SolidColorBrush x:Key="PrimaryBrush" Color="{StaticResource Primary}" />
     <SolidColorBrush x:Key="SecondaryBrush" Color="{StaticResource Secondary}" />
