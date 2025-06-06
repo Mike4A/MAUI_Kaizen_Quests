@@ -43,9 +43,9 @@
 
     <Color x:Key="BackgroundMainPage">#FFF9F4</Color>   
     <Color x:Key="BackgroundMainFrame">#EEEEEE</Color>
-    <Color x:Key="BackgroundGlassBody">#44FFFFFF</Color>
+    <Color x:Key="BackgroundGlassBody">#66FFFFFF</Color>
     <Color x:Key="BorderMainFrame">#AAAAAA</Color>
-    <Color x:Key="BorderGlassBody">#EEEEEE</Color>
+    <Color x:Key="BorderGlassBody">#FFFFFF</Color>
 
     <SolidColorBrush x:Key="PrimaryBrush" Color="{StaticResource Primary}" />
     <SolidColorBrush x:Key="SecondaryBrush" Color="{StaticResource Secondary}" />
