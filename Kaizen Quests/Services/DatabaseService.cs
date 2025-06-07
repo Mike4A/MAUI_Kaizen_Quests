@@ -56,7 +56,7 @@ namespace Kaizen_Quests.Services
             List<Quest> questsToUpdate = newQuests.Where(q => q.Id != 0).Where(q =>
             {
                 Quest? cached = _cachedQuests.FirstOrDefault(cq => cq.Id == q.Id);
-                return cached != null && !AreQuestsEqual(q, cached);
+                return cached != null && !q.Equals(cached);
             }).ToList();
             await UpdateQuestsWithGoalsAsync(questsToUpdate);
 
@@ -94,7 +94,7 @@ namespace Kaizen_Quests.Services
                 List<Goal> goalsToUpdate = quest.Goals.Where(g => g.Id != 0).Where(g =>
                 {
                     Goal? cachedGoal = cachedGoals.FirstOrDefault(cg => cg.Id == g.Id);
-                    return cachedGoal != null && !AreGoalsEqual(g, cachedGoal);
+                    return cachedGoal != null && !g.Equals(cachedGoal);
                 }).ToList();
                 foreach (Goal goal in goalsToUpdate)
                 {
@@ -132,21 +132,6 @@ namespace Kaizen_Quests.Services
 
                 await _database.DeleteAsync(quest);
             }
-        }
-
-        // Hilfsmethoden zum Vergleichen
-        private bool AreQuestsEqual(Quest q1, Quest q2)
-        {
-            return q1.Title == q2.Title &&
-                   q1.Color == q2.Color &&
-                   q1.Order == q2.Order;
-        }
-        private bool AreGoalsEqual(Goal g1, Goal g2)
-        {
-            return g1.Description == g2.Description &&
-                   g1.Order == g2.Order &&
-                   g1.IsCompleted == g2.IsCompleted &&
-                   g1.IsAddGoal == g2.IsAddGoal;
         }
 
         private List<Quest> CloneQuestListDeep(List<Quest> quests)

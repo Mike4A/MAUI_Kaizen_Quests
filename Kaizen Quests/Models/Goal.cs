@@ -1,5 +1,4 @@
 ﻿using SQLite;
-using Windows.Gaming.Input.ForceFeedback;
 
 namespace Kaizen_Quests.Models
 {
