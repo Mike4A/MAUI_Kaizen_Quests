@@ -8,12 +8,13 @@ namespace Kaizen_Quests.ViewModels
 {
     public class MainViewModel : INotifyPropertyChanged
     {
+        #region Binding Fields
+
         public event PropertyChangedEventHandler? PropertyChanged;
         protected virtual void OnPropertyChanged(string propertyName)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
-
         public ObservableCollection<QuestViewModel> Quests { get; } = [];
 
         public ICommand AddQuestCommand { get; }
@@ -23,11 +24,16 @@ namespace Kaizen_Quests.ViewModels
         public ICommand StartGoalDragCommand { get; }
         public ICommand GoalDropCommand { get; }
 
+        #endregion
+
+        #region Private Fields
+
         private QuestViewModel? _dragSourceQuest;
         private GoalViewModel? _dragSourceGoal;
         private QuestViewModel? _dragSourceGoalParent;
-
         private readonly DatabaseService _dbs;
+
+        #endregion
 
         public MainViewModel(DatabaseService dbs)
         {

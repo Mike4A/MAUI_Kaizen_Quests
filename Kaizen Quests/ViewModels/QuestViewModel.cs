@@ -1,24 +1,21 @@
 ﻿using Kaizen_Quests.Models;
 using System.Collections.ObjectModel;
+using System.Collections.Specialized;
 using System.ComponentModel;
 
 namespace Kaizen_Quests.ViewModels
 {
     public class QuestViewModel : INotifyPropertyChanged
     {
-        private Quest _quest;
+        #region Binding Fields
 
-        public ObservableCollection<GoalViewModel> Goals { get; }
+        public event PropertyChangedEventHandler? PropertyChanged;
 
-        public QuestViewModel(Quest quest)
+        protected virtual void OnPropertyChanged(string propertyName)
         {
-            _quest = quest;
-            Goals = new ObservableCollection<GoalViewModel>();
-            foreach (Goal goal in _quest.Goals)
-            {
-                Goals.Add(new GoalViewModel(goal));
-            }
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
+
 
         public int Id
         {
@@ -68,11 +65,64 @@ namespace Kaizen_Quests.ViewModels
             }
         }
 
-        public event PropertyChangedEventHandler? PropertyChanged;
+        public ObservableCollection<GoalViewModel> Goals { get; }
 
-        protected virtual void OnPropertyChanged(string propertyName)
+        #endregion
+
+        #region Private Fields
+
+        private Quest _quest;
+
+        #endregion
+
+        public QuestViewModel(Quest quest)
         {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+            _quest = quest;
+            Goals = [.. _quest.Goals.Select(g => new GoalViewModel(g))]; 
+            Goals.CollectionChanged += Goals_CollectionChanged;
+        }
+
+        private void Goals_CollectionChanged(object? sender, NotifyCollectionChangedEventArgs e)
+        {
+            switch (e.Action)
+            {
+                case NotifyCollectionChangedAction.Add:
+                    // Neue Goals hinzufügen ins Model
+                    foreach (GoalViewModel newGoalVm in e.NewItems!)
+                    {
+                        _quest.Goals.Add(newGoalVm.ToModel());
+                    }
+                    break;
+
+                case NotifyCollectionChangedAction.Remove:
+                    // Entfernte Goals aus Model löschen
+                    foreach (GoalViewModel oldGoalVm in e.OldItems!)
+                    {
+                        var toRemove = _quest.Goals.FirstOrDefault(g => g.Id == oldGoalVm.Id);
+                        if (toRemove != null)
+                            _quest.Goals.Remove(toRemove);
+                    }
+                    break;
+
+                case NotifyCollectionChangedAction.Move:
+                    // Reihenfolge anpassen
+                    if (e.OldStartingIndex >= 0 && e.NewStartingIndex >= 0)
+                    {
+                        var movedGoal = _quest.Goals[e.OldStartingIndex];
+                        _quest.Goals.RemoveAt(e.OldStartingIndex);
+                        _quest.Goals.Insert(e.NewStartingIndex, movedGoal);
+                    }
+                    break;
+
+                case NotifyCollectionChangedAction.Replace:
+                    // Ersatz-Logik (optional)
+                    break;
+
+                case NotifyCollectionChangedAction.Reset:
+                    // z.B. bei Clear()
+                    _quest.Goals.Clear();
+                    break;
+            }
         }
     }
 }

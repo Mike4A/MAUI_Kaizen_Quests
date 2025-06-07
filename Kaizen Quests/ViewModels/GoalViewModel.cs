@@ -5,11 +5,13 @@ namespace Kaizen_Quests.ViewModels
 {
     public class GoalViewModel : INotifyPropertyChanged
     {
-        private Goal _goal;
+        #region Binding Fields
 
-        public GoalViewModel(Goal goal)
+        public event PropertyChangedEventHandler? PropertyChanged;
+
+        protected virtual void OnPropertyChanged(string propertyName)
         {
-            _goal = goal;
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
         public int Id
@@ -86,11 +88,30 @@ namespace Kaizen_Quests.ViewModels
             }
         }
 
-        public event PropertyChangedEventHandler? PropertyChanged;
+        #endregion
 
-        protected virtual void OnPropertyChanged(string propertyName)
+        #region Private Fields
+
+        private Goal _goal;
+
+        #endregion
+
+        public GoalViewModel(Goal goal)
         {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+            _goal = goal;
+        }
+
+        public Goal ToModel()
+        {
+            return new Goal
+            {
+                Id = Id,
+                QuestId = QuestId,
+                Order = Order,
+                Description = Description,
+                IsCompleted = IsCompleted,
+                IsAddGoal = IsAddGoal
+            };
         }
     }
 }

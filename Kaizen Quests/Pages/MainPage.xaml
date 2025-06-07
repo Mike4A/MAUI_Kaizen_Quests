@@ -6,10 +6,7 @@
     xmlns:viewModels="clr-namespace:Kaizen_Quests.ViewModels"
     x:Name="MainPageRef"
     BackgroundColor="{StaticResource BackgroundMainFrame}"
-    Shell.NavBarIsVisible="False">
-    <ContentPage.BindingContext>
-        <viewModels:MainViewModel />
-    </ContentPage.BindingContext>
+    Shell.NavBarIsVisible="False">    
     <Grid RowDefinitions="*,Auto">
         <Border
             Margin="9,9,9,0"

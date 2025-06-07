@@ -1,4 +1,5 @@
-﻿using Kaizen_Quests.Services;
+﻿using Kaizen_Quests.Pages;
+using Kaizen_Quests.Services;
 using Kaizen_Quests.ViewModels;
 using Microsoft.Extensions.Logging;
 
@@ -25,7 +26,8 @@ namespace Kaizen_Quests
 
             // Services registrieren
             builder.Services.AddSingleton<DatabaseService>(sp => new DatabaseService(dbPath));
-            builder.Services.AddTransient<MainViewModel>();
+            builder.Services.AddTransient<MainPage>();
+            builder.Services.AddTransient<MainViewModel>();            
 
             return builder.Build();
         }
