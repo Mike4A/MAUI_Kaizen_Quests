@@ -14,7 +14,7 @@ namespace Kaizen_Quests.ViewModels
         {
             _quest = quest;
             Goals = new ObservableCollection<GoalViewModel>();
-            foreach (var goal in _quest.Goals)
+            foreach (Goal goal in _quest.Goals)
             {
                 Goals.Add(new GoalViewModel(goal));
             }
