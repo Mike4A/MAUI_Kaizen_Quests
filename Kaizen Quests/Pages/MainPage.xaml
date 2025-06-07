@@ -9,8 +9,8 @@
     Shell.NavBarIsVisible="False">
     <Grid>
         <Grid RowDefinitions="*,Auto">
-            <Border
-                Margin="9,9,9,0"
+            <Border x:Name="QuestsFrame"
+                Margin="6,6,6,0"
                 Padding="0"
                 BackgroundColor="{StaticResource BackgroundMainPage}"
                 Stroke="{StaticResource BorderMainFrame}"
@@ -111,7 +111,7 @@
             </Border>
             <Border
                 Grid.Row="1"
-                Margin="9"
+                Margin="6"
                 Padding="9"
                 BackgroundColor="{StaticResource BackgroundMainPage}"
                 Stroke="{StaticResource BorderMainFrame}"

@@ -1,4 +1,5 @@
 ﻿using Kaizen_Quests.ViewModels;
+using System.Diagnostics;
 
 namespace Kaizen_Quests.Pages
 {
@@ -16,9 +17,14 @@ namespace Kaizen_Quests.Pages
         private async Task ScrollToQuestAsync(QuestViewModel questViewModel)
         {
             if (questViewModel == null)
-                return;            
-            await Task.Delay(100); //give the UI time to respond
-            QuestsCollectionView.ScrollTo(questViewModel, position: ScrollToPosition.MakeVisible, animate: true);
+                return;
+            //Looks weird but is the only solution i've found to prevent a bug where it scrolls to last quest if index == 0
+            await Task.Delay(250);
+            Dispatcher.Dispatch(async () =>
+            {
+                await Task.Delay(250); 
+                QuestsCollectionView.ScrollTo(questViewModel, position: ScrollToPosition.MakeVisible, animate: true);
+            });
         }
     }
 }

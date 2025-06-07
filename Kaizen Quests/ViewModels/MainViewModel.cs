@@ -2,6 +2,7 @@
 using Kaizen_Quests.Services;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.Windows.Input;
 
 namespace Kaizen_Quests.ViewModels
@@ -100,9 +101,9 @@ namespace Kaizen_Quests.ViewModels
         {
             if (dropDestinationQuest == null || _dragSourceQuest == null || _dragSourceQuest == dropDestinationQuest)
                 return;
-            Quests.Move(Quests.IndexOf(_dragSourceQuest), Quests.IndexOf(dropDestinationQuest));
+            Quests.Move(Quests.IndexOf(_dragSourceQuest), Quests.IndexOf(dropDestinationQuest));                        
             QuestsOrderChanged?.Invoke(_dragSourceQuest);
-            await SaveDataAsync();
+            await SaveDataAsync();            
         }
 
         private void StartGoalDrag(GoalViewModel dragSourceGoal)
