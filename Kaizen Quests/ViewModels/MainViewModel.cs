@@ -17,16 +17,16 @@ namespace Kaizen_Quests.ViewModels
         }
         public ObservableCollection<QuestViewModel> Quests { get; } = [];
 
-        public ICommand AddQuestCommand { get; }
-        public ICommand AddGoalCommand { get; }
-        public ICommand StartQuestDragCommand { get; }
-        public ICommand QuestDropCommand { get; }
-        public ICommand StartGoalDragCommand { get; }
-        public ICommand GoalDropCommand { get; }
+        public ICommand AddQuestCommand => new Command<string>(async (indexString) => await AddQuest(indexString));
+        public ICommand AddGoalCommand => new Command<QuestViewModel>(async (qvm) => await AddGoal(qvm));
+        public ICommand StartQuestDragCommand => new Command<QuestViewModel>(StartQuestDrag);
+        public ICommand StartGoalDragCommand => new Command<GoalViewModel>(StartGoalDrag);
+        public ICommand QuestDropCommand => new Command<QuestViewModel>(async (qvm) => await QuestDrop(qvm));
+        public ICommand GoalDropCommand => new Command<GoalViewModel>(async (gvm) => await GoalDrop(gvm));
 
         #endregion
 
-        #region Private Fields
+        #region Other Fields
 
         private QuestViewModel? _dragSourceQuest;
         private GoalViewModel? _dragSourceGoal;
@@ -36,13 +36,7 @@ namespace Kaizen_Quests.ViewModels
         #endregion
 
         public MainViewModel(DatabaseService dbs)
-        {
-            AddQuestCommand = new Command<object>(AddQuest);
-            AddGoalCommand = new Command<QuestViewModel>(AddGoal);
-            StartQuestDragCommand = new Command<QuestViewModel>(StartQuestDrag);
-            QuestDropCommand = new Command<QuestViewModel>(QuestDrop);
-            StartGoalDragCommand = new Command<GoalViewModel>(StartGoalDrag);
-            GoalDropCommand = new Command<GoalViewModel>(GoalDrop);
+        {            
             _dbs = dbs;
             LoadDataAsync().ConfigureAwait(false);
         }
@@ -57,10 +51,21 @@ namespace Kaizen_Quests.ViewModels
             }
         }
 
-        //public async Task SaveDataAsync()
-        //{
-        //    await _dbs.SaveChangesIfNeededAsync(Quests.ToList());
-        //}
+        public async Task SaveDataAsync()
+        {
+            try
+            {
+                List<Quest> questsToSave = Quests.Select(qvm => qvm.QuestModel).ToList();
+                await _dbs.SaveChangesIfNeededAsync(questsToSave);
+            }
+            catch (Exception ex)
+            {
+                // User benachrichtigen
+                await Application.Current!.MainPage!.DisplayAlert("Fehler", "Speichern fehlgeschlagen: " + ex.Message, "OK");
+                // Fehler weiterwerfen
+                throw;
+            }
+        }
 
         private void StartQuestDrag(QuestViewModel dragSourceQuest)
         {
@@ -70,11 +75,12 @@ namespace Kaizen_Quests.ViewModels
             _dragSourceGoal = null; // Reset goal drag source when starting quest drag
             _dragSourceGoalParent = null; // Reset goal parent when starting quest drag
         }
-        private void QuestDrop(QuestViewModel dropDestionationQuest)
+        private async Task QuestDrop(QuestViewModel dropDestinationQuest)
         {
-            if (dropDestionationQuest == null || _dragSourceQuest == null || _dragSourceQuest == dropDestionationQuest)
+            if (dropDestinationQuest == null || _dragSourceQuest == null || _dragSourceQuest == dropDestinationQuest)
                 return;
-            Quests.Move(Quests.IndexOf(_dragSourceQuest), Quests.IndexOf(dropDestionationQuest));
+            Quests.Move(Quests.IndexOf(_dragSourceQuest), Quests.IndexOf(dropDestinationQuest));
+            await SaveDataAsync();
         }
 
         private void StartGoalDrag(GoalViewModel dragSourceGoal)
@@ -85,11 +91,11 @@ namespace Kaizen_Quests.ViewModels
             _dragSourceGoalParent = FindParentQuest(dragSourceGoal);
             _dragSourceQuest = null; // Reset quest drag source when starting goal drag
         }
-        private void GoalDrop(GoalViewModel dropDestionationGoal)
+        private async Task GoalDrop(GoalViewModel dropDestionationGoal)
         {
             if (_dragSourceQuest != null && dropDestionationGoal != null)
             {
-                QuestDrop(FindParentQuest(dropDestionationGoal)!);
+                await QuestDrop(FindParentQuest(dropDestionationGoal)!);
                 return;
             }
             if (dropDestionationGoal == null ||
@@ -104,6 +110,7 @@ namespace Kaizen_Quests.ViewModels
             int oldIndex = _dragSourceGoalParent.Goals.IndexOf(_dragSourceGoal);
             int newIndex = _dragSourceGoalParent.Goals.IndexOf(dropDestionationGoal);
             _dragSourceGoalParent.Goals.Move(oldIndex, newIndex);
+            await SaveDataAsync();
         }
         private QuestViewModel? FindParentQuest(GoalViewModel goal)
         {
@@ -117,7 +124,7 @@ namespace Kaizen_Quests.ViewModels
             return null;
         }
 
-        private void AddQuest(object colorIndexString)
+        private async Task AddQuest(object colorIndexString)
         {
             if (colorIndexString is not string || !int.TryParse(colorIndexString as string, out int index))
                 return;
@@ -130,14 +137,16 @@ namespace Kaizen_Quests.ViewModels
                 Goals = [new Goal { IsAddGoal = true }]
             };
             Quests.Add(new QuestViewModel(newQuest));
+            await SaveDataAsync();
         }
-        private void AddGoal(QuestViewModel questViewModel)
+        private async Task AddGoal(QuestViewModel questViewModel)
         {
             if (questViewModel == null)
                 return;
             int index = questViewModel.Goals.ToList().FindIndex(g => g.IsAddGoal);
             Goal goal = new Goal() { Description = "Ziel-Beschreibung" };
             questViewModel.Goals.Insert(index, new GoalViewModel(goal));
+            await SaveDataAsync();
         }
     }
 }

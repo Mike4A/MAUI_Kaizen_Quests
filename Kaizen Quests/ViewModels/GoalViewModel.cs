@@ -16,89 +16,90 @@ namespace Kaizen_Quests.ViewModels
 
         public int Id
         {
-            get => _goal.Id;
+            get => _goalModel.Id;
             set
             {
-                if (_goal.Id == value)
+                if (_goalModel.Id == value)
                     return;
-                _goal.Id = value;
+                _goalModel.Id = value;
                 OnPropertyChanged(nameof(Id));
             }
         }
 
         public int QuestId
         {
-            get => _goal.QuestId;
+            get => _goalModel.QuestId;
             set
             {
-                if (_goal.QuestId == value)
+                if (_goalModel.QuestId == value)
                     return;
-                _goal.QuestId = value;
+                _goalModel.QuestId = value;
                 OnPropertyChanged(nameof(QuestId));
             }
         }
 
         public int Order
         {
-            get => _goal.Order;
+            get => _goalModel.Order;
             set
             {
-                if (_goal.Order == value)
+                if (_goalModel.Order == value)
                     return;
-                _goal.Order = value;
+                _goalModel.Order = value;
                 OnPropertyChanged(nameof(Order));
             }
         }
 
         public string? Description
         {
-            get => _goal.Description;
+            get => _goalModel.Description;
             set
             {
-                if (_goal.Description == value)
+                if (_goalModel.Description == value)
                     return;
-                _goal.Description = value;
+                _goalModel.Description = value;
                 OnPropertyChanged(nameof(Description));
             }
         }
 
         public bool IsCompleted
         {
-            get => _goal.IsCompleted;
+            get => _goalModel.IsCompleted;
             set
             {
-                if (_goal.IsCompleted == value)
+                if (_goalModel.IsCompleted == value)
                     return;
-                _goal.IsCompleted = value;
+                _goalModel.IsCompleted = value;
                 OnPropertyChanged(nameof(IsCompleted));
             }
         }
 
-        public bool IsRegularGoal { get => !_goal.IsAddGoal; }
+        public bool IsRegularGoal { get => !_goalModel.IsAddGoal; }
 
         public bool IsAddGoal
         {
-            get => _goal.IsAddGoal;
+            get => _goalModel.IsAddGoal;
             set
             {
-                if (_goal.IsAddGoal == value)
+                if (_goalModel.IsAddGoal == value)
                     return;
-                _goal.IsAddGoal = value;
+                _goalModel.IsAddGoal = value;
                 OnPropertyChanged(nameof(IsAddGoal));
             }
         }
 
         #endregion
 
-        #region Private Fields
+        #region Other Fields
 
-        private Goal _goal;
+        private Goal _goalModel;
+        public Goal GoalModel => _goalModel; // Read-only property to expose the model directly for Sync-reasons
 
         #endregion
 
         public GoalViewModel(Goal goal)
         {
-            _goal = goal;
+            _goalModel = goal;
         }
 
         public Goal ToModel()

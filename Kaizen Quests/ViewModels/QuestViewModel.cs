@@ -19,48 +19,48 @@ namespace Kaizen_Quests.ViewModels
 
         public int Id
         {
-            get => _quest.Id;
+            get => _questModel.Id;
             set
             {
-                if (_quest.Id == value)
+                if (_questModel.Id == value)
                     return;
-                _quest.Id = value;
+                _questModel.Id = value;
                 OnPropertyChanged(nameof(Id));
             }
         }
 
         public int Order
         {
-            get => _quest.Order;
+            get => _questModel.Order;
             set
             {
-                if (_quest.Order == value)
+                if (_questModel.Order == value)
                     return;
-                _quest.Order = value;
+                _questModel.Order = value;
                 OnPropertyChanged(nameof(Order));
             }
         }
 
         public string? Title
         {
-            get => _quest.Title;
+            get => _questModel.Title;
             set
             {
-                if (_quest.Title == value)
+                if (_questModel.Title == value)
                     return;
-                _quest.Title = value;
+                _questModel.Title = value;
                 OnPropertyChanged(nameof(Title));
             }
         }
 
         public string? Color
         {
-            get => _quest.Color;
+            get => _questModel.Color;
             set
             {
-                if (_quest.Color == value)
+                if (_questModel.Color == value)
                     return;
-                _quest.Color = value;
+                _questModel.Color = value;
                 OnPropertyChanged(nameof(Color));
             }
         }
@@ -69,16 +69,17 @@ namespace Kaizen_Quests.ViewModels
 
         #endregion
 
-        #region Private Fields
+        #region Other Fields
 
-        private Quest _quest;
+        private Quest _questModel;
+        public Quest QuestModel { get => _questModel; }
 
         #endregion
 
         public QuestViewModel(Quest quest)
         {
-            _quest = quest;
-            Goals = [.. _quest.Goals.Select(g => new GoalViewModel(g))]; 
+            _questModel = quest;
+            Goals = [.. _questModel.Goals.Select(g => new GoalViewModel(g))];
             Goals.CollectionChanged += Goals_CollectionChanged;
         }
 
@@ -87,40 +88,34 @@ namespace Kaizen_Quests.ViewModels
             switch (e.Action)
             {
                 case NotifyCollectionChangedAction.Add:
-                    // Neue Goals hinzufügen ins Model
                     foreach (GoalViewModel newGoalVm in e.NewItems!)
                     {
-                        _quest.Goals.Add(newGoalVm.ToModel());
+                        _questModel.Goals.Add(newGoalVm.GoalModel);
                     }
                     break;
 
                 case NotifyCollectionChangedAction.Remove:
-                    // Entfernte Goals aus Model löschen
                     foreach (GoalViewModel oldGoalVm in e.OldItems!)
                     {
-                        var toRemove = _quest.Goals.FirstOrDefault(g => g.Id == oldGoalVm.Id);
-                        if (toRemove != null)
-                            _quest.Goals.Remove(toRemove);
+                        _questModel.Goals.Remove(oldGoalVm.GoalModel);
                     }
                     break;
 
                 case NotifyCollectionChangedAction.Move:
-                    // Reihenfolge anpassen
-                    if (e.OldStartingIndex >= 0 && e.NewStartingIndex >= 0)
+                    if (e.OldStartingIndex != e.NewStartingIndex)
                     {
-                        var movedGoal = _quest.Goals[e.OldStartingIndex];
-                        _quest.Goals.RemoveAt(e.OldStartingIndex);
-                        _quest.Goals.Insert(e.NewStartingIndex, movedGoal);
+                        Goal movedGoal = _questModel.Goals[e.OldStartingIndex];
+                        _questModel.Goals.RemoveAt(e.OldStartingIndex);
+                        _questModel.Goals.Insert(e.NewStartingIndex, movedGoal);
                     }
                     break;
 
-                case NotifyCollectionChangedAction.Replace:
-                    // Ersatz-Logik (optional)
-                    break;
-
                 case NotifyCollectionChangedAction.Reset:
-                    // z.B. bei Clear()
-                    _quest.Goals.Clear();
+                    _questModel.Goals.Clear();
+                    foreach (GoalViewModel goalVm in Goals)
+                    {
+                        _questModel.Goals.Add(goalVm.GoalModel);
+                    }
                     break;
             }
         }
