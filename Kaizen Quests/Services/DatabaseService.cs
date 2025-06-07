@@ -38,7 +38,7 @@ namespace Kaizen_Quests.Services
             return quests;
         }
 
-        // Vergleicht die neue Quest-Liste mit dem Cache und speichert nur die Änderungen (um MainViewModel schlank zu halten und da die Datenmenge gering bleibt)
+        // Vergleicht die neue Quest-Liste mit dem Cache und speichert nur die Änderungen (Als Experiment, um MainViewModel schlank zu halten und da die Datenmenge gering sein sollte)
         public async Task SaveChangesIfNeededAsync(List<Quest> newQuests)
         {
             // Neue Quests identifizieren

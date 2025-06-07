@@ -15,6 +15,20 @@ namespace Kaizen_Quests.ViewModels
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
+
+        private bool _isLoading;
+        public bool IsLoading
+        {
+            get => _isLoading;
+            set
+            {
+                if (_isLoading == value)
+                    return;
+                _isLoading = value;
+                OnPropertyChanged(nameof(IsLoading));
+            }
+        }
+
         public ObservableCollection<QuestViewModel> Quests { get; } = [];
 
         public ICommand AddQuestCommand => new Command<string>(async (indexString) => await AddQuest(indexString));
@@ -36,27 +50,23 @@ namespace Kaizen_Quests.ViewModels
         #endregion
 
         public MainViewModel(DatabaseService dbs)
-        {            
+        {
             _dbs = dbs;
-            LoadData();
-            Quests.CollectionChanged += (s, e) =>
-            {
-                // Update the order of quests after any change
-                for (int i = 0; i < Quests.Count; i++)
-                {
-                    Quests[i].Order = i + 1;
-                }
-            };
+            _ = LoadDataAsync();
+            // Update the order of quests after any change
+            Quests.CollectionChanged += (s, e) => { for (int i = 0; i < Quests.Count; i++) { Quests[i].Order = i + 1; } };
         }
 
-        private async void LoadData()
+        private async Task LoadDataAsync()
         {
+            IsLoading = true;
             List<Quest> loadedQuests = await _dbs.GetQuestsWithGoalsAsync();
             Quests.Clear();
             foreach (Quest quest in loadedQuests)
             {
                 Quests.Add(new QuestViewModel(quest));
             }
+            IsLoading = false;
         }
 
         public async Task SaveDataAsync()

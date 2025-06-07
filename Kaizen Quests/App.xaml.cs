@@ -11,7 +11,6 @@ namespace Kaizen_Quests
             InitializeComponent();
             _dbs = dbs;
             InitializeDatabase();
-
             MainPage = new AppShell();
         }
 

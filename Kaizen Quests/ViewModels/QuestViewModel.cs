@@ -120,10 +120,7 @@ namespace Kaizen_Quests.ViewModels
             }
 
             // Update the order of goals after any change
-            for (int i = 0; i < Goals.Count; i++)
-            {
-                Goals[i].Order = i + 1;
-            }
+            for (int i = 0; i < Goals.Count; i++) { Goals[i].Order = i + 1; }
         }
     }
 }
