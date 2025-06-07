@@ -7,7 +7,7 @@
     x:Name="MainPageRef"
     BackgroundColor="{StaticResource BackgroundMainFrame}"
     Shell.NavBarIsVisible="False">
-    <Grid>       
+    <Grid>
         <Grid RowDefinitions="*,Auto">
             <Border
                 Margin="9,9,9,0"
@@ -16,7 +16,7 @@
                 Stroke="{StaticResource BorderMainFrame}"
                 StrokeShape="RoundRectangle 26">
                 <!--  Quest-Liste  -->
-                <CollectionView ItemsSource="{Binding Quests}">
+                <CollectionView x:Name="QuestsCollectionView" ItemsSource="{Binding Quests}">
                     <CollectionView.ItemTemplate>
                         <DataTemplate>
                             <Border
@@ -48,7 +48,7 @@
 
                                     </Border>
                                     <!--  Goals CollectionView  -->
-                                    <CollectionView ItemsSource="{Binding Goals}">
+                                    <CollectionView x:Name="GoalsCollectionView" ItemsSource="{Binding Goals}">
                                         <CollectionView.ItemTemplate>
                                             <DataTemplate>
                                                 <Grid>
@@ -202,18 +202,18 @@
         </Grid>
         <!--  Loading Overlay  -->
         <Grid
-         BackgroundColor="#88000000"
-         HorizontalOptions="Fill"
-         InputTransparent="False"
-         IsVisible="{Binding IsLoading}"
-         VerticalOptions="Fill">
+            BackgroundColor="#88000000"
+            HorizontalOptions="Fill"
+            InputTransparent="False"
+            IsVisible="{Binding IsLoading}"
+            VerticalOptions="Fill">
             <ActivityIndicator
-             HeightRequest="60"
-             HorizontalOptions="Center"
-             IsRunning="{Binding IsLoading}"
-             VerticalOptions="Center"
-             WidthRequest="60"
-             Color="White" />
+                HeightRequest="60"
+                HorizontalOptions="Center"
+                IsRunning="{Binding IsLoading}"
+                VerticalOptions="Center"
+                WidthRequest="60"
+                Color="White" />
         </Grid>
     </Grid>
 </ContentPage>

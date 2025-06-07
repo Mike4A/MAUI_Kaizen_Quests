@@ -46,6 +46,9 @@ namespace Kaizen_Quests.ViewModels
         private GoalViewModel? _dragSourceGoal;
         private QuestViewModel? _dragSourceGoalParent;
         private readonly DatabaseService _dbs;
+        public event Action<QuestViewModel>? QuestAdded;
+        public event Action<QuestViewModel>? GoalAdded;
+        public event Action<QuestViewModel>? QuestsOrderChanged;
 
         #endregion
 
@@ -98,6 +101,7 @@ namespace Kaizen_Quests.ViewModels
             if (dropDestinationQuest == null || _dragSourceQuest == null || _dragSourceQuest == dropDestinationQuest)
                 return;
             Quests.Move(Quests.IndexOf(_dragSourceQuest), Quests.IndexOf(dropDestinationQuest));
+            QuestsOrderChanged?.Invoke(_dragSourceQuest);
             await SaveDataAsync();
         }
 
@@ -154,7 +158,9 @@ namespace Kaizen_Quests.ViewModels
                 Color = color,
                 Goals = [new Goal { IsAddGoal = true }]
             };
-            Quests.Add(new QuestViewModel(newQuest));
+            QuestViewModel newQuestVm = new(newQuest);
+            Quests.Add(newQuestVm);
+            QuestAdded?.Invoke(newQuestVm);
             await SaveDataAsync();
         }
         private async Task AddGoal(QuestViewModel questViewModel)
@@ -164,6 +170,7 @@ namespace Kaizen_Quests.ViewModels
             int index = questViewModel.Goals.ToList().FindIndex(g => g.IsAddGoal);
             Goal goal = new Goal() { Description = "Ziel-Beschreibung" };
             questViewModel.Goals.Insert(index, new GoalViewModel(goal));
+            GoalAdded?.Invoke(questViewModel);
             await SaveDataAsync();
         }
     }
