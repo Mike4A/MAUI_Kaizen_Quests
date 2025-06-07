@@ -38,10 +38,18 @@ namespace Kaizen_Quests.ViewModels
         public MainViewModel(DatabaseService dbs)
         {            
             _dbs = dbs;
-            LoadDataAsync().ConfigureAwait(false);
+            LoadData();
+            Quests.CollectionChanged += (s, e) =>
+            {
+                // Update the order of quests after any change
+                for (int i = 0; i < Quests.Count; i++)
+                {
+                    Quests[i].Order = i + 1;
+                }
+            };
         }
 
-        private async Task LoadDataAsync()
+        private async void LoadData()
         {
             List<Quest> loadedQuests = await _dbs.GetQuestsWithGoalsAsync();
             Quests.Clear();

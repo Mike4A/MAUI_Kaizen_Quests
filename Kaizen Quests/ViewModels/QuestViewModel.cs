@@ -118,6 +118,12 @@ namespace Kaizen_Quests.ViewModels
                     }
                     break;
             }
+
+            // Update the order of goals after any change
+            for (int i = 0; i < Goals.Count; i++)
+            {
+                Goals[i].Order = i + 1;
+            }
         }
     }
 }

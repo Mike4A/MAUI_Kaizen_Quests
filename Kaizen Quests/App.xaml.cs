@@ -1,13 +1,23 @@
-﻿using Kaizen_Quests.Pages;
+﻿using Kaizen_Quests.Services;
 
 namespace Kaizen_Quests
 {
     public partial class App : Application
     {
-        public App()
+        private readonly DatabaseService _dbs;
+
+        public App(DatabaseService dbs)
         {
             InitializeComponent();
+            _dbs = dbs;
+            InitializeDatabase();
+
             MainPage = new AppShell();
+        }
+
+        private async void InitializeDatabase()
+        {
+            await _dbs.InitializeAsync();
         }
     }
 }
