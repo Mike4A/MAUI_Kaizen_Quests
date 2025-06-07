@@ -1,4 +1,5 @@
 ﻿using Kaizen_Quests.Models;
+using Kaizen_Quests.Services;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Windows.Input;
@@ -26,7 +27,9 @@ namespace Kaizen_Quests.ViewModels
         private GoalViewModel? _dragSourceGoal;
         private QuestViewModel? _dragSourceGoalParent;
 
-        public MainViewModel()
+        private readonly DatabaseService _dbs;
+
+        public MainViewModel(DatabaseService dbs)
         {
             AddQuestCommand = new Command<object>(AddQuest);
             AddGoalCommand = new Command<QuestViewModel>(AddGoal);
@@ -34,7 +37,24 @@ namespace Kaizen_Quests.ViewModels
             QuestDropCommand = new Command<QuestViewModel>(QuestDrop);
             StartGoalDragCommand = new Command<GoalViewModel>(StartGoalDrag);
             GoalDropCommand = new Command<GoalViewModel>(GoalDrop);
+            _dbs = dbs;
+            LoadDataAsync().ConfigureAwait(false);
         }
+
+        private async Task LoadDataAsync()
+        {
+            List<Quest> loadedQuests = await _dbs.GetQuestsWithGoalsAsync();
+            Quests.Clear();
+            foreach (Quest quest in loadedQuests)
+            {
+                Quests.Add(new QuestViewModel(quest));
+            }
+        }
+
+        //public async Task SaveDataAsync()
+        //{
+        //    await _dbs.SaveChangesIfNeededAsync(Quests.ToList());
+        //}
 
         private void StartQuestDrag(QuestViewModel dragSourceQuest)
         {
@@ -45,7 +65,7 @@ namespace Kaizen_Quests.ViewModels
             _dragSourceGoalParent = null; // Reset goal parent when starting quest drag
         }
         private void QuestDrop(QuestViewModel dropDestionationQuest)
-        {            
+        {
             if (dropDestionationQuest == null || _dragSourceQuest == null || _dragSourceQuest == dropDestionationQuest)
                 return;
             Quests.Move(Quests.IndexOf(_dragSourceQuest), Quests.IndexOf(dropDestionationQuest));
@@ -65,7 +85,7 @@ namespace Kaizen_Quests.ViewModels
             {
                 QuestDrop(FindParentQuest(dropDestionationGoal)!);
                 return;
-            }                
+            }
             if (dropDestionationGoal == null ||
                 _dragSourceGoal == null ||
                 _dragSourceGoal == dropDestionationGoal)

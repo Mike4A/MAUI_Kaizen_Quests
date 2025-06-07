@@ -19,30 +19,52 @@ namespace Kaizen_Quests.ViewModels
                 Goals.Add(new GoalViewModel(goal));
             }
         }
-                
+
+        public int Id
+        {
+            get => _quest.Id;
+            set
+            {
+                if (_quest.Id == value)
+                    return;
+                _quest.Id = value;
+                OnPropertyChanged(nameof(Id));
+            }
+        }
+
+        public int Order
+        {
+            get => _quest.Order;
+            set
+            {
+                if (_quest.Order == value)
+                    return;
+                _quest.Order = value;
+                OnPropertyChanged(nameof(Order));
+            }
+        }
+
         public string? Title
         {
             get => _quest.Title;
             set
             {
-                if (_quest.Title != value)
-                {
-                    _quest.Title = value;
-                    OnPropertyChanged(nameof(Title));
-                }
+                if (_quest.Title == value)
+                    return;
+                _quest.Title = value;
+                OnPropertyChanged(nameof(Title));
             }
         }
-        
+
         public string? Color
         {
             get => _quest.Color;
             set
             {
-                if (_quest.Color != value)
-                {
-                    _quest.Color = value;
-                    OnPropertyChanged(nameof(Color));
-                }
+                if (_quest.Color == value)
+                    return;
+                _quest.Color = value;
+                OnPropertyChanged(nameof(Color));
             }
         }
 
@@ -51,6 +73,6 @@ namespace Kaizen_Quests.ViewModels
         protected virtual void OnPropertyChanged(string propertyName)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-        }           
+        }
     }
 }

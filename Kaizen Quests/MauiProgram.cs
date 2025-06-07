@@ -1,4 +1,6 @@
-﻿using Microsoft.Extensions.Logging;
+﻿using Kaizen_Quests.Services;
+using Kaizen_Quests.ViewModels;
+using Microsoft.Extensions.Logging;
 
 namespace Kaizen_Quests
 {
@@ -18,6 +20,12 @@ namespace Kaizen_Quests
 #if DEBUG
     		builder.Logging.AddDebug();
 #endif
+                        
+            string dbPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "kaizen_quests.db3");
+
+            // Services registrieren
+            builder.Services.AddSingleton<DatabaseService>(sp => new DatabaseService(dbPath));
+            builder.Services.AddTransient<MainViewModel>();
 
             return builder.Build();
         }

@@ -16,7 +16,6 @@ namespace Kaizen_Quests.Models
         {
             if (other is null)
                 return false;
-
             return Id == other.Id &&
                    QuestId == other.QuestId &&
                    Description == other.Description &&

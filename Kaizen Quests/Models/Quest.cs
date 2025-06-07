@@ -15,8 +15,7 @@ namespace Kaizen_Quests.Models
         public bool Equals(Quest? other)
         {
             if (other is null)
-                return false;
-            
+                return false;            
             return Id == other.Id &&
                    Title == other.Title &&
                    Order == other.Order &&

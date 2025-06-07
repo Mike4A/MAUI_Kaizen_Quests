@@ -12,16 +12,51 @@ namespace Kaizen_Quests.ViewModels
             _goal = goal;
         }
 
+        public int Id
+        {
+            get => _goal.Id;
+            set
+            {
+                if (_goal.Id == value)
+                    return;
+                _goal.Id = value;
+                OnPropertyChanged(nameof(Id));
+            }
+        }
+
+        public int QuestId
+        {
+            get => _goal.QuestId;
+            set
+            {
+                if (_goal.QuestId == value)
+                    return;
+                _goal.QuestId = value;
+                OnPropertyChanged(nameof(QuestId));
+            }
+        }
+
+        public int Order
+        {
+            get => _goal.Order;
+            set
+            {
+                if (_goal.Order == value)
+                    return;
+                _goal.Order = value;
+                OnPropertyChanged(nameof(Order));
+            }
+        }
+
         public string? Description
         {
             get => _goal.Description;
             set
             {
-                if (_goal.Description != value)
-                {
-                    _goal.Description = value;
-                    OnPropertyChanged(nameof(Description));
-                }
+                if (_goal.Description == value)
+                    return;
+                _goal.Description = value;
+                OnPropertyChanged(nameof(Description));
             }
         }
 
@@ -30,11 +65,10 @@ namespace Kaizen_Quests.ViewModels
             get => _goal.IsCompleted;
             set
             {
-                if (_goal.IsCompleted != value)
-                {
-                    _goal.IsCompleted = value;
-                    OnPropertyChanged(nameof(IsCompleted));
-                }
+                if (_goal.IsCompleted == value)
+                    return;
+                _goal.IsCompleted = value;
+                OnPropertyChanged(nameof(IsCompleted));
             }
         }
 
@@ -45,11 +79,10 @@ namespace Kaizen_Quests.ViewModels
             get => _goal.IsAddGoal;
             set
             {
-                if (_goal.IsAddGoal != value)
-                {
-                    _goal.IsAddGoal = value;
-                    OnPropertyChanged(nameof(IsAddGoal));
-                }
+                if (_goal.IsAddGoal == value)
+                    return;
+                _goal.IsAddGoal = value;
+                OnPropertyChanged(nameof(IsAddGoal));
             }
         }
 
