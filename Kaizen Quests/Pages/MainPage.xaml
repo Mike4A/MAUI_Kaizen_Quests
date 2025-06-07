@@ -83,7 +83,7 @@
                                                             VerticalTextAlignment="Center" />
                                                     </Grid>
                                                 </Border>
-                                                <!--  AddGoal Goal  -->
+                                                <!--  AddGoal Goal (Was a logical mistake but looks better due to implemented Animations) -->
                                                 <Border
                                                     Padding="4"
                                                     BackgroundColor="{StaticResource BackgroundGlassBody}"
@@ -104,7 +104,7 @@
                                             </Grid>
                                         </DataTemplate>
                                     </CollectionView.ItemTemplate>
-                                </CollectionView>
+                                </CollectionView>                                
                             </VerticalStackLayout>
                         </Border>
                     </DataTemplate>

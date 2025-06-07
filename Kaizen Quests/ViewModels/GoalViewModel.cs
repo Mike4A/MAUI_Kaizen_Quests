@@ -38,7 +38,7 @@ namespace Kaizen_Quests.ViewModels
             }
         }
 
-        public bool IsRegularGoal { get => !_goal.IsAddGoal && !_goal.IsRemoveGoal; }
+        public bool IsRegularGoal { get => !_goal.IsAddGoal; }
 
         public bool IsAddGoal
         {
@@ -49,19 +49,6 @@ namespace Kaizen_Quests.ViewModels
                 {
                     _goal.IsAddGoal = value;
                     OnPropertyChanged(nameof(IsAddGoal));
-                }
-            }
-        }
-
-        public bool IsRemoveGoal
-        {
-            get => _goal.IsRemoveGoal;
-            set
-            {
-                if (_goal.IsRemoveGoal != value)
-                {
-                    _goal.IsRemoveGoal = value;
-                    OnPropertyChanged(nameof(IsRemoveGoal));
                 }
             }
         }
