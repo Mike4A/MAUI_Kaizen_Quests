@@ -68,7 +68,7 @@ namespace Kaizen_Quests.ViewModels
         {
             if (DialogService == null)
                 return;
-            string action = await DialogService.ShowActionSheet("Was möchtest du tun?", "Abbrechen", "", "✏️ Bearbeiten", "🗑️ Löschen");
+            string action = await DialogService.ShowActionSheet("Was möchtest du tun?", "❌ Abbrechen", "", "✏️ Bearbeiten", "🗑️ Löschen");
             switch (action)
             {
                 case "✏️ Bearbeiten":
@@ -97,7 +97,7 @@ namespace Kaizen_Quests.ViewModels
         {
             if (DialogService == null)
                 return;
-            string action = await DialogService.ShowActionSheet("Was möchtest du tun?", "Abbrechen", "", "✏️ Bearbeiten", "🗑️ Löschen");
+            string action = await DialogService.ShowActionSheet("Was möchtest du tun?", "❌ Abbrechen", "", "✏️ Bearbeiten", "🗑️ Löschen");
             switch (action)
             {
                 case "✏️ Bearbeiten":
