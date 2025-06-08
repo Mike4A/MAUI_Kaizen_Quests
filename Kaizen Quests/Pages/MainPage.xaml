@@ -9,7 +9,8 @@
     Shell.NavBarIsVisible="False">
     <Grid>
         <Grid RowDefinitions="*,Auto">
-            <Border x:Name="QuestsFrame"
+            <Border
+                x:Name="QuestsFrame"
                 Margin="6,6,6,0"
                 Padding="0"
                 BackgroundColor="{StaticResource BackgroundMainPage}"
@@ -20,13 +21,14 @@
                     <CollectionView.ItemTemplate>
                         <DataTemplate>
                             <Border
-                                x:Name="QuestFrame"
+                                x:Name="QuestBorder"
                                 Margin="6"
                                 Padding="9"
                                 BackgroundColor="{Binding Color}"
                                 Stroke="{StaticResource BorderMainFrame}"
                                 StrokeShape="RoundRectangle 20">
                                 <Border.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding BindingContext.QuestTappedCommand, Source={x:Reference MainPageRef}}" CommandParameter="{Binding BindingContext, Source={x:Reference QuestBorder}}" />
                                     <DragGestureRecognizer DragStartingCommand="{Binding BindingContext.StartQuestDragCommand, Source={x:Reference MainPageRef}}" DragStartingCommandParameter="{Binding}" />
                                     <DropGestureRecognizer DropCommand="{Binding BindingContext.QuestDropCommand, Source={x:Reference MainPageRef}}" DropCommandParameter="{Binding}" />
                                 </Border.GestureRecognizers>
@@ -54,12 +56,14 @@
                                                 <Grid>
                                                     <!--  Regular Goal  -->
                                                     <Border
+                                                        x:Name="GoalBorder"
                                                         Padding="0,0,0,0"
                                                         BackgroundColor="{StaticResource BackgroundGlassBody}"
                                                         IsVisible="{Binding IsRegularGoal}"
                                                         Stroke="{StaticResource BorderGlassBody}"
                                                         StrokeShape="RoundRectangle 0">
                                                         <Border.GestureRecognizers>
+                                                            <TapGestureRecognizer Command="{Binding BindingContext.GoalTappedCommand, Source={x:Reference MainPageRef}}" CommandParameter="{Binding BindingContext, Source={x:Reference GoalBorder}}" />
                                                             <DragGestureRecognizer DragStartingCommand="{Binding BindingContext.StartGoalDragCommand, Source={x:Reference MainPageRef}}" DragStartingCommandParameter="{Binding}" />
                                                             <DropGestureRecognizer DropCommand="{Binding BindingContext.GoalDropCommand, Source={x:Reference MainPageRef}}" DropCommandParameter="{Binding}" />
                                                         </Border.GestureRecognizers>
@@ -76,7 +80,7 @@
                                                                 Grid.Column="1"
                                                                 FontSize="14"
                                                                 HorizontalOptions="Fill"
-                                                                Text="{Binding Description}"
+                                                                Text="{Binding Text}"
                                                                 TextColor="{StaticResource Gray600}"
                                                                 VerticalTextAlignment="Center" />
                                                         </Grid>
@@ -89,7 +93,7 @@
                                                         Stroke="{StaticResource BorderGlassBody}"
                                                         StrokeShape="RoundRectangle 0,0,24,24">
                                                         <Border.GestureRecognizers>
-                                                            <TapGestureRecognizer Command="{Binding BindingContext.AddGoalCommand, Source={x:Reference MainPageRef}}" CommandParameter="{Binding BindingContext, Source={x:Reference QuestFrame}}" />
+                                                            <TapGestureRecognizer Command="{Binding BindingContext.AddGoalCommand, Source={x:Reference MainPageRef}}" CommandParameter="{Binding BindingContext, Source={x:Reference QuestBorder}}" />
                                                         </Border.GestureRecognizers>
                                                         <Label
                                                             FontSize="14"

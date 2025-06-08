@@ -1,5 +1,5 @@
-﻿using Kaizen_Quests.ViewModels;
-using System.Diagnostics;
+﻿using Kaizen_Quests.Services;
+using Kaizen_Quests.ViewModels;
 
 namespace Kaizen_Quests.Pages
 {
@@ -9,6 +9,7 @@ namespace Kaizen_Quests.Pages
         {
             InitializeComponent();
             BindingContext = mainViewModel;
+            mainViewModel.DialogService = new DialogService(this);
             mainViewModel.QuestAdded += async (newQuestVm) => { await ScrollToQuestAsync(newQuestVm); };
             mainViewModel.GoalAdded += async (parentQuestVm) => { await ScrollToQuestAsync(parentQuestVm); };
             mainViewModel.QuestsOrderChanged += async (changedQuestVm) => { await ScrollToQuestAsync(changedQuestVm); };

@@ -50,7 +50,7 @@ namespace Kaizen_Quests.ViewModels
             }
         }
 
-        public string? Description
+        public string? Text
         {
             get => _goalModel.Description;
             set
@@ -58,7 +58,7 @@ namespace Kaizen_Quests.ViewModels
                 if (_goalModel.Description == value)
                     return;
                 _goalModel.Description = value;
-                OnPropertyChanged(nameof(Description));
+                OnPropertyChanged(nameof(Text));
             }
         }
 
@@ -109,7 +109,7 @@ namespace Kaizen_Quests.ViewModels
                 Id = Id,
                 QuestId = QuestId,
                 Order = Order,
-                Description = Description,
+                Description = Text,
                 IsCompleted = IsCompleted,
                 IsAddGoal = IsAddGoal
             };

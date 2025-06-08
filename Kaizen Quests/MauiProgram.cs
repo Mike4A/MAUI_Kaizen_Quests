@@ -26,8 +26,8 @@ namespace Kaizen_Quests
 
             // Services registrieren
             builder.Services.AddSingleton<DatabaseService>(sp => new DatabaseService(dbPath));
-            builder.Services.AddTransient<MainPage>();
-            builder.Services.AddTransient<MainViewModel>();            
+            builder.Services.AddSingleton<MainPage>();
+            builder.Services.AddSingleton<MainViewModel>();  
 
             return builder.Build();
         }

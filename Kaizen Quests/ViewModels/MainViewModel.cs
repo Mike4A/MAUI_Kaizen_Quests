@@ -38,6 +38,8 @@ namespace Kaizen_Quests.ViewModels
         public ICommand StartGoalDragCommand => new Command<GoalViewModel>(StartGoalDrag);
         public ICommand QuestDropCommand => new Command<QuestViewModel>(async (qvm) => await QuestDrop(qvm));
         public ICommand GoalDropCommand => new Command<GoalViewModel>(async (gvm) => await GoalDrop(gvm));
+        public ICommand QuestTappedCommand => new Command<QuestViewModel>(async (qvm) => await QuestTapped(qvm));
+        public ICommand GoalTappedCommand => new Command<GoalViewModel>(async (gvm) => await GoalTapped(gvm));
 
         #endregion
 
@@ -50,6 +52,7 @@ namespace Kaizen_Quests.ViewModels
         public event Action<QuestViewModel>? QuestAdded;
         public event Action<QuestViewModel>? GoalAdded;
         public event Action<QuestViewModel>? QuestsOrderChanged;
+        public IDialogService? DialogService;
 
         #endregion
 
@@ -60,6 +63,67 @@ namespace Kaizen_Quests.ViewModels
             // Update the order of quests after any change
             Quests.CollectionChanged += (s, e) => { for (int i = 0; i < Quests.Count; i++) { Quests[i].Order = i + 1; } };
         }
+
+        private async Task QuestTapped(QuestViewModel qvm)
+        {
+            if (DialogService == null)
+                return;
+            string action = await DialogService.ShowActionSheet("Was möchtest du tun?", "Abbrechen", "", "✏️ Bearbeiten", "🗑️ Löschen");
+            switch (action)
+            {
+                case "✏️ Bearbeiten":
+                    string newTitle = await DialogService.ShowPrompt("✏️ Bearbeiten", "Neuer Titel:", qvm.Title ?? "");
+                    if (!String.IsNullOrWhiteSpace(newTitle))
+                    {
+                        qvm.Title = newTitle;
+                        await SaveDataAsync();
+                    }
+                    break;
+                case "🗑️ Löschen":
+                    bool confirm = await DialogService.ShowConfirmation("🗑️ Löschen", "Willst du die Quest wirklich löschen?");
+                    if (confirm)
+                    {
+                        Quests.Remove(qvm);
+                        await SaveDataAsync();
+                    }
+                    break;
+                default:
+                    break;
+            }
+        }
+
+
+        private async Task GoalTapped(GoalViewModel gvm)
+        {
+            if (DialogService == null)
+                return;
+            string action = await DialogService.ShowActionSheet("Was möchtest du tun?", "Abbrechen", "", "✏️ Bearbeiten", "🗑️ Löschen");
+            switch (action)
+            {
+                case "✏️ Bearbeiten":
+                    string newText = await DialogService.ShowPrompt("✏️ Bearbeiten", "Neuer Text:", gvm.Text ?? "");
+                    if (!String.IsNullOrWhiteSpace(newText))
+                    {
+                        gvm.Text = newText;
+                        await SaveDataAsync();
+                    }
+                    break;
+                case "🗑️ Löschen":
+                    bool confirm = await DialogService.ShowConfirmation("🗑️ Löschen", "Willst du den Text wirklich löschen?");
+                    if (confirm)
+                    {
+                        QuestViewModel? parentQuest = FindParentQuest(gvm);
+                        if (parentQuest == null)
+                            return;
+                        parentQuest.Goals.Remove(gvm);
+                        await SaveDataAsync();
+                    }
+                    break;
+                default:
+                    break;
+            }
+        }
+
 
         private async Task LoadDataAsync()
         {
@@ -101,9 +165,9 @@ namespace Kaizen_Quests.ViewModels
         {
             if (dropDestinationQuest == null || _dragSourceQuest == null || _dragSourceQuest == dropDestinationQuest)
                 return;
-            Quests.Move(Quests.IndexOf(_dragSourceQuest), Quests.IndexOf(dropDestinationQuest));                        
+            Quests.Move(Quests.IndexOf(_dragSourceQuest), Quests.IndexOf(dropDestinationQuest));
             QuestsOrderChanged?.Invoke(_dragSourceQuest);
-            await SaveDataAsync();            
+            await SaveDataAsync();
         }
 
         private void StartGoalDrag(GoalViewModel dragSourceGoal)
@@ -155,7 +219,7 @@ namespace Kaizen_Quests.ViewModels
             string color = ((Color)Application.Current!.Resources[colorKey]).ToHex();
             Quest newQuest = new()
             {
-                Title = "Quest-Titel",
+                Title = "Titel",
                 Color = color,
                 Goals = [new Goal { IsAddGoal = true }]
             };
@@ -169,7 +233,7 @@ namespace Kaizen_Quests.ViewModels
             if (questViewModel == null)
                 return;
             int index = questViewModel.Goals.ToList().FindIndex(g => g.IsAddGoal);
-            Goal goal = new Goal() { Description = "Ziel-Beschreibung" };
+            Goal goal = new Goal() { Description = "Text" };
             questViewModel.Goals.Insert(index, new GoalViewModel(goal));
             GoalAdded?.Invoke(questViewModel);
             await SaveDataAsync();
