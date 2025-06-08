@@ -69,6 +69,7 @@
                                                         </Border.GestureRecognizers>
                                                         <Grid ColumnDefinitions="Auto,*">
                                                             <CheckBox
+                                                                IsVisible="False"
                                                                 Grid.Column="0"
                                                                 Margin="6"
                                                                 HeightRequest="18"
@@ -82,7 +83,8 @@
                                                                 HorizontalOptions="Fill"
                                                                 Text="{Binding Text}"
                                                                 TextColor="{StaticResource Gray600}"
-                                                                VerticalTextAlignment="Center" />
+                                                                VerticalTextAlignment="Center"
+                                                                HorizontalTextAlignment="Center"/>
                                                         </Grid>
                                                     </Border>
                                                     <!--  AddGoal Goal (Was a logical mistake but looks better due to implemented Animations)  -->
