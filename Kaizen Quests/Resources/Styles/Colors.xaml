@@ -43,7 +43,8 @@
 
     <Color x:Key="BackgroundMainPage">#FFF9F4</Color>   
     <Color x:Key="BackgroundMainFrame">#EEEEEE</Color>
-    <Color x:Key="BackgroundGlassBody">#66FFFFFF</Color>
+    <Color x:Key="BackgroundGlassBody1">#88FFFFFF</Color>
+    <Color x:Key="BackgroundGlassBody2">#22888888</Color>
     <Color x:Key="BorderMainFrame">#AAAAAA</Color>
     <Color x:Key="BorderGlassBody">#FFFFFF</Color>
 
