@@ -42,7 +42,8 @@
     <!-- HSL(270, 80%, 85%) -->
 
     <Color x:Key="BackgroundMainPage">#FFF9F4</Color>   
-    <Color x:Key="BackgroundMainFrame">#EEEEEE</Color>
+    <Color x:Key="BackgroundMainFrame1">#EEEEEE</Color>
+    <Color x:Key="BackgroundMainFrame2">#BBBBBB</Color>
     <Color x:Key="BackgroundGlassBody1">#88FFFFFF</Color>
     <Color x:Key="BackgroundGlassBody2">#22888888</Color>
     <Color x:Key="BorderMainFrame">#AAAAAA</Color>
