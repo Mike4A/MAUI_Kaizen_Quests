@@ -52,12 +52,12 @@ namespace Kaizen_Quests.ViewModels
 
         public string? Text
         {
-            get => _goalModel.Description;
+            get => _goalModel.Text;
             set
             {
-                if (_goalModel.Description == value)
+                if (_goalModel.Text == value)
                     return;
-                _goalModel.Description = value;
+                _goalModel.Text = value;
                 OnPropertyChanged(nameof(Text));
             }
         }
@@ -109,7 +109,7 @@ namespace Kaizen_Quests.ViewModels
                 Id = Id,
                 QuestId = QuestId,
                 Order = Order,
-                Description = Text,
+                Text = Text,
                 IsCompleted = IsCompleted,
                 IsAddGoal = IsAddGoal
             };

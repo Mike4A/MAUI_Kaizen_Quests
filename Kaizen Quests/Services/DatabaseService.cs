@@ -146,7 +146,7 @@ namespace Kaizen_Quests.Services
                 {
                     Id = g.Id,
                     QuestId = g.QuestId,
-                    Description = g.Description,
+                    Text = g.Text,
                     Order = g.Order,
                     IsCompleted = g.IsCompleted,
                     IsAddGoal = g.IsAddGoal

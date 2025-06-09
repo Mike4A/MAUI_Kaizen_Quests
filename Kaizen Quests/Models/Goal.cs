@@ -7,7 +7,7 @@ namespace Kaizen_Quests.Models
         [PrimaryKey, AutoIncrement]
         public int Id { get; set; }
         public int QuestId { get; set; }  // Fremdschlüssel
-        public string? Description { get; set; }
+        public string? Text { get; set; }
         public int Order { get; set; }
         public bool IsCompleted { get; set; }
         public bool IsAddGoal { get; set; } // Flag for AddGoalGoal
@@ -18,7 +18,7 @@ namespace Kaizen_Quests.Models
                 return false;
             return Id == other.Id &&
                    QuestId == other.QuestId &&
-                   Description == other.Description &&
+                   Text == other.Text &&
                    Order == other.Order &&
                    IsCompleted == other.IsCompleted &&
                    IsAddGoal == other.IsAddGoal;

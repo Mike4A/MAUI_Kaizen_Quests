@@ -72,7 +72,7 @@ namespace Kaizen_Quests.ViewModels
             switch (action)
             {
                 case "✏️ Bearbeiten":
-                    string newTitle = await DialogService.ShowPrompt("✏️ Bearbeiten", "Neuer Titel:", qvm.Title ?? "");
+                    string newTitle = await DialogService.ShowPrompt("✏️ Bearbeiten", "Neue Rollenbezeichnung:", qvm.Title ?? "");
                     if (!String.IsNullOrWhiteSpace(newTitle))
                     {
                         qvm.Title = newTitle;
@@ -80,7 +80,7 @@ namespace Kaizen_Quests.ViewModels
                     }
                     break;
                 case "🗑️ Löschen":
-                    bool confirm = await DialogService.ShowConfirmation("🗑️ Löschen", "Willst du Den Eintrag und seine untergeordneten Elemente wirklich löschen?");
+                    bool confirm = await DialogService.ShowConfirmation("🗑️ Löschen", "Willst du diese Rolle und ihre Zeilen wirklich löschen?");
                     if (confirm)
                     {
                         Quests.Remove(qvm);
@@ -101,7 +101,7 @@ namespace Kaizen_Quests.ViewModels
             switch (action)
             {
                 case "✏️ Bearbeiten":
-                    string newText = await DialogService.ShowPrompt("✏️ Bearbeiten", "Neuer Text:", gvm.Text ?? "");
+                    string newText = await DialogService.ShowPrompt("✏️ Bearbeiten", "Neuer Zeilentext:", gvm.Text ?? "");
                     if (!String.IsNullOrWhiteSpace(newText))
                     {
                         gvm.Text = newText;
@@ -109,7 +109,7 @@ namespace Kaizen_Quests.ViewModels
                     }
                     break;
                 case "🗑️ Löschen":
-                    bool confirm = await DialogService.ShowConfirmation("🗑️ Löschen", "Willst du dieses Element wirklich löschen?");
+                    bool confirm = await DialogService.ShowConfirmation("🗑️ Löschen", "Willst du diese Zeile wirklich löschen?");
                     if (confirm)
                     {
                         QuestViewModel? parentQuest = FindParentQuest(gvm);
@@ -219,7 +219,7 @@ namespace Kaizen_Quests.ViewModels
             string color = ((Color)Application.Current!.Resources[colorKey]).ToHex();
             Quest newQuest = new()
             {
-                Title = "Titel",
+                Title = "Rollenbezeichnung",
                 Color = color,
                 Goals = [new Goal { IsAddGoal = true }]
             };
@@ -233,7 +233,7 @@ namespace Kaizen_Quests.ViewModels
             if (questViewModel == null)
                 return;
             int index = questViewModel.Goals.ToList().FindIndex(g => g.IsAddGoal);
-            Goal goal = new Goal() { Description = "Text" };
+            Goal goal = new Goal() { Text = "Zeilentext" };
             questViewModel.Goals.Insert(index, new GoalViewModel(goal));
             GoalAdded?.Invoke(questViewModel);
             await SaveDataAsync();
