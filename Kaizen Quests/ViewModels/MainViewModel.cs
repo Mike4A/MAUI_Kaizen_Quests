@@ -80,7 +80,7 @@ namespace Kaizen_Quests.ViewModels
                     }
                     break;
                 case "🗑️ Löschen":
-                    bool confirm = await DialogService.ShowConfirmation("🗑️ Löschen", "Willst du die Quest wirklich löschen?");
+                    bool confirm = await DialogService.ShowConfirmation("🗑️ Löschen", "Willst du Den Eintrag und seine untergeordneten Elemente wirklich löschen?");
                     if (confirm)
                     {
                         Quests.Remove(qvm);
@@ -109,7 +109,7 @@ namespace Kaizen_Quests.ViewModels
                     }
                     break;
                 case "🗑️ Löschen":
-                    bool confirm = await DialogService.ShowConfirmation("🗑️ Löschen", "Willst du den Text wirklich löschen?");
+                    bool confirm = await DialogService.ShowConfirmation("🗑️ Löschen", "Willst du dieses Element wirklich löschen?");
                     if (confirm)
                     {
                         QuestViewModel? parentQuest = FindParentQuest(gvm);
