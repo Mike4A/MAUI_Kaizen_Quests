@@ -2,6 +2,7 @@
 using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 using System.ComponentModel;
+using System.Windows.Input;
 
 namespace Kaizen_Quests.ViewModels
 {
@@ -65,7 +66,21 @@ namespace Kaizen_Quests.ViewModels
             }
         }
 
+        public bool IsExpanded
+        {
+            get => _questModel.IsExpanded;
+            set
+            {
+                if (_questModel.IsExpanded == value)
+                    return;
+                _questModel.IsExpanded = value;
+                OnPropertyChanged(nameof(IsExpanded));
+            }
+        }
+
         public ObservableCollection<GoalViewModel> Goals { get; }
+
+        public ICommand ToggleExpandedCommand => new Command(() => { IsExpanded = !IsExpanded; });        
 
         #endregion
 
@@ -81,7 +96,7 @@ namespace Kaizen_Quests.ViewModels
             _questModel = quest;
             Goals = [.. _questModel.Goals.Select(g => new GoalViewModel(g))];
             Goals.CollectionChanged += Goals_CollectionChanged;
-        }
+        }      
 
         private void Goals_CollectionChanged(object? sender, NotifyCollectionChangedEventArgs e)
         {

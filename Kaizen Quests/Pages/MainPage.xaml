@@ -40,7 +40,7 @@
                                 <VerticalStackLayout>
                                     <!--  Quest-Header mit Grid  -->
                                     <Border Stroke="{StaticResource BorderGlassBody}" StrokeShape="RoundRectangle 24,24,0,0">
-                                        <Border.Background>                                            
+                                        <Border.Background>
                                             <RadialGradientBrush Center="0.5,0.5" Radius="0.5">
                                                 <GradientStop Offset="0.0" Color="{StaticResource BackgroundGlassBody1}" />
                                                 <GradientStop Offset="1.0" Color="{StaticResource BackgroundGlassBody2}" />
@@ -58,7 +58,10 @@
 
                                     </Border>
                                     <!--  Goals CollectionView  -->
-                                    <CollectionView x:Name="GoalsCollectionView" ItemsSource="{Binding Goals}">
+                                    <CollectionView
+                                        x:Name="GoalsCollectionView"
+                                        IsVisible="{Binding IsExpanded}"
+                                        ItemsSource="{Binding Goals}">
                                         <CollectionView.ItemTemplate>
                                             <DataTemplate>
                                                 <Grid>
@@ -104,11 +107,10 @@
                                                     <Border
                                                         Padding="4"
                                                         IsVisible="{Binding IsAddGoal}"
-                                                        Stroke="{StaticResource BorderGlassBody}"
-                                                        StrokeShape="RoundRectangle 0,0,24,24">
+                                                        Stroke="{StaticResource BorderGlassBody}">
                                                         <Border.Background>
                                                             <RadialGradientBrush Center="0.5,0.5" Radius="0.5">
-                                                                <GradientStop Offset="0.0" Color="{StaticResource BackgroundGlassBody1}" />
+                                                                <GradientStop Offset="0.3" Color="{StaticResource BackgroundGlassBody1}" />
                                                                 <GradientStop Offset="1.0" Color="{StaticResource BackgroundGlassBody2}" />
                                                             </RadialGradientBrush>
                                                         </Border.Background>
@@ -127,6 +129,30 @@
                                             </DataTemplate>
                                         </CollectionView.ItemTemplate>
                                     </CollectionView>
+                                    <!--  Collapse/Expand Element  -->
+                                    <Border Stroke="{StaticResource BorderGlassBody}" StrokeShape="RoundRectangle 0,0,24,24">
+                                        <Border.Background>
+                                            <RadialGradientBrush Center="0.5,0.5" Radius="0.5">
+                                                <GradientStop Offset="0.0" Color="{StaticResource BackgroundGlassBody1}" />
+                                                <GradientStop Offset="1.0" Color="{StaticResource BackgroundGlassBody2}" />
+                                            </RadialGradientBrush>
+                                        </Border.Background>
+                                        <Border.GestureRecognizers>
+                                            <TapGestureRecognizer Command="{Binding ToggleExpandedCommand}" />
+                                        </Border.GestureRecognizers>
+                                            <Label
+                                                Grid.Column="0"
+                                                Padding="3"
+                                                BackgroundColor="Transparent"
+                                                FontAttributes="Bold"
+                                                FontSize="16"
+                                                HorizontalOptions="Center"
+                                                HorizontalTextAlignment="Center"
+                                                Text="◌ ◌ ◌ ◌"
+                                                TextColor="{StaticResource Gray600}"
+                                                VerticalOptions="Center"
+                                                VerticalTextAlignment="Center" />                       
+                                    </Border>
                                 </VerticalStackLayout>
                             </Border>
                         </DataTemplate>

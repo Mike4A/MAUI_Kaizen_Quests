@@ -9,6 +9,7 @@ namespace Kaizen_Quests.Models
         public string? Title { get; set; }
         public int Order { get; set; }
         public string? Color { get; set; }
+        public bool IsExpanded { get; set; }
         [Ignore]
         public List<Goal> Goals { get; set; } = new();
 
@@ -20,6 +21,7 @@ namespace Kaizen_Quests.Models
                    Title == other.Title &&
                    Order == other.Order &&
                    Color == other.Color &&
+                   IsExpanded == other.IsExpanded &&
                    Goals.SequenceEqual(other.Goals);
         }        
     }

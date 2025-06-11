@@ -101,7 +101,7 @@ namespace Kaizen_Quests.ViewModels
             switch (action)
             {
                 case "✏️ Bearbeiten":
-                    string newText = await DialogService.ShowPrompt("✏️ Bearbeiten", "Neuer Zeilentext:", gvm.Text ?? "");
+                    string newText = await DialogService.ShowPrompt("✏️ Bearbeiten", "Neue Textzeile:", gvm.Text ?? "");
                     if (!String.IsNullOrWhiteSpace(newText))
                     {
                         gvm.Text = newText;
@@ -233,7 +233,7 @@ namespace Kaizen_Quests.ViewModels
             if (questViewModel == null)
                 return;
             int index = questViewModel.Goals.ToList().FindIndex(g => g.IsAddGoal);
-            Goal goal = new Goal() { Text = "Zeilentext" };
+            Goal goal = new Goal() { Text = "Textzeile" };
             questViewModel.Goals.Insert(index, new GoalViewModel(goal));
             GoalAdded?.Invoke(questViewModel);
             await SaveDataAsync();
