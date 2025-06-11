@@ -40,6 +40,7 @@ namespace Kaizen_Quests.ViewModels
         public ICommand GoalDropCommand => new Command<GoalViewModel>(async (gvm) => await GoalDrop(gvm));
         public ICommand QuestTappedCommand => new Command<QuestViewModel>(async (qvm) => await QuestTapped(qvm));
         public ICommand GoalTappedCommand => new Command<GoalViewModel>(async (gvm) => await GoalTapped(gvm));
+        public ICommand ToggleQuestExpandedCommand => new Command<QuestViewModel>(async (qvm) => await ToggleQuestIsExpanded(qvm));
 
         #endregion
 
@@ -62,6 +63,12 @@ namespace Kaizen_Quests.ViewModels
             _ = LoadDataAsync();
             // Update the order of quests after any change
             Quests.CollectionChanged += (s, e) => { for (int i = 0; i < Quests.Count; i++) { Quests[i].Order = i + 1; } };
+        }
+
+        private async Task ToggleQuestIsExpanded(QuestViewModel qvm)
+        {
+            qvm.IsExpanded = !qvm.IsExpanded;
+            await SaveDataAsync();
         }
 
         private async Task QuestTapped(QuestViewModel qvm)

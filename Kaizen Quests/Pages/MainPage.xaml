@@ -138,7 +138,7 @@
                                             </RadialGradientBrush>
                                         </Border.Background>
                                         <Border.GestureRecognizers>
-                                            <TapGestureRecognizer Command="{Binding ToggleExpandedCommand}" />
+                                            <TapGestureRecognizer Command="{Binding BindingContext.ToggleQuestExpandedCommand, Source={x:Reference MainPageRef}}" CommandParameter="{Binding BindingContext, Source={x:Reference QuestBorder}}" />
                                         </Border.GestureRecognizers>
                                         <Label
                                             Grid.Column="0"

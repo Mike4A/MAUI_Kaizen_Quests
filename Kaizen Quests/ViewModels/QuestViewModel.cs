@@ -80,8 +80,6 @@ namespace Kaizen_Quests.ViewModels
 
         public ObservableCollection<GoalViewModel> Goals { get; }
 
-        public ICommand ToggleExpandedCommand => new Command(() => { IsExpanded = !IsExpanded; });        
-
         #endregion
 
         #region Other Fields

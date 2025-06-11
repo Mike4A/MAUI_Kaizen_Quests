@@ -1,5 +1,6 @@
 ﻿using SQLite;
 using Kaizen_Quests.Models;
+using Kaizen_Quests.Helpers;
 
 namespace Kaizen_Quests.Services
 {
@@ -34,7 +35,7 @@ namespace Kaizen_Quests.Services
                     .ToListAsync();
             }
 
-            _cachedQuests = CloneQuestListDeep(quests);
+            _cachedQuests = QuestHelper.CloneQuestListDeep(quests);
             return quests;
         }
 
@@ -61,7 +62,7 @@ namespace Kaizen_Quests.Services
             await UpdateQuestsWithGoalsAsync(questsToUpdate);
 
             // Cache aktualisieren (Kopie, damit keine Referenzen vermischt werden)
-            _cachedQuests = CloneQuestListDeep(newQuests);
+            _cachedQuests = QuestHelper.CloneQuestListDeep(newQuests);
         }
 
         private async Task UpdateQuestsWithGoalsAsync(List<Quest> questsToUpdate)
@@ -132,26 +133,6 @@ namespace Kaizen_Quests.Services
 
                 await _database.DeleteAsync(quest);
             }
-        }
-
-        private List<Quest> CloneQuestListDeep(List<Quest> quests)
-        {
-            return quests.Select(q => new Quest
-            {
-                Id = q.Id,
-                Title = q.Title,
-                Color = q.Color,
-                Order = q.Order,
-                Goals = q.Goals.Select(g => new Goal
-                {
-                    Id = g.Id,
-                    QuestId = g.QuestId,
-                    Text = g.Text,
-                    Order = g.Order,
-                    IsCompleted = g.IsCompleted,
-                    IsAddGoal = g.IsAddGoal
-                }).ToList()
-            }).ToList();
-        }
+        }       
     }
 }
