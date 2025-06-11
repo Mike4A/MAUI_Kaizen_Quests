@@ -45,7 +45,7 @@
     <Color x:Key="BackgroundMainFrame1">#EEEEEE</Color>
     <Color x:Key="BackgroundMainFrame2">#BBBBBB</Color>
     <Color x:Key="BackgroundGlassBody1">#88FFFFFF</Color>
-    <Color x:Key="BackgroundGlassBody2">#22888888</Color>
+    <Color x:Key="BackgroundGlassBody2">#22AAAAAA</Color>
     <Color x:Key="BorderMainFrame">#AAAAAA</Color>
     <Color x:Key="BorderGlassBody">#FFFFFF</Color>
 
