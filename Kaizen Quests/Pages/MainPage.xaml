@@ -42,7 +42,7 @@
                                     <Border Stroke="{StaticResource BorderGlassBody}" StrokeShape="RoundRectangle 24,24,0,0">
                                         <Border.Background>
                                             <RadialGradientBrush Center="0.5,0.5" Radius="0.5">
-                                                <GradientStop Offset="0.0" Color="{StaticResource BackgroundGlassBody1}" />
+                                                <GradientStop Offset="0.3" Color="{StaticResource BackgroundGlassBody1}" />
                                                 <GradientStop Offset="1.0" Color="{StaticResource BackgroundGlassBody2}" />
                                             </RadialGradientBrush>
                                         </Border.Background>
@@ -74,7 +74,7 @@
                                                         StrokeShape="RoundRectangle 0">
                                                         <Border.Background>
                                                             <RadialGradientBrush Center="0.5,0.5" Radius="0.5">
-                                                                <GradientStop Offset="0.3" Color="{StaticResource BackgroundGlassBody1}" />
+                                                                <GradientStop Offset="0.6" Color="{StaticResource BackgroundGlassBody1}" />
                                                                 <GradientStop Offset="1.0" Color="{StaticResource BackgroundGlassBody2}" />
                                                             </RadialGradientBrush>
                                                         </Border.Background>
@@ -140,18 +140,18 @@
                                         <Border.GestureRecognizers>
                                             <TapGestureRecognizer Command="{Binding ToggleExpandedCommand}" />
                                         </Border.GestureRecognizers>
-                                            <Label
-                                                Grid.Column="0"
-                                                Padding="3"
-                                                BackgroundColor="Transparent"
-                                                FontAttributes="Bold"
-                                                FontSize="16"
-                                                HorizontalOptions="Center"
-                                                HorizontalTextAlignment="Center"
-                                                Text="◌ ◌ ◌ ◌"
-                                                TextColor="{StaticResource Gray600}"
-                                                VerticalOptions="Center"
-                                                VerticalTextAlignment="Center" />                       
+                                        <Label
+                                            Grid.Column="0"
+                                            Padding="3"
+                                            BackgroundColor="Transparent"
+                                            FontAttributes="Bold"
+                                            FontSize="16"
+                                            HorizontalOptions="Center"
+                                            HorizontalTextAlignment="Center"
+                                            Text="◌ ◌ ◌ ◌"
+                                            TextColor="{StaticResource Gray600}"
+                                            VerticalOptions="Center"
+                                            VerticalTextAlignment="Center" />
                                     </Border>
                                 </VerticalStackLayout>
                             </Border>
