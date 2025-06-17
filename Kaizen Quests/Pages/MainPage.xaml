@@ -32,6 +32,14 @@
                                 BackgroundColor="{Binding Color}"
                                 Stroke="{StaticResource BorderMainFrame}"
                                 StrokeShape="RoundRectangle 20">
+                                <Border.Background>
+                                    <LinearGradientBrush  StartPoint="0,0" EndPoint="1,0">
+                                        <GradientStop Offset="0.0" Color="{Binding FalloffColor}" />
+                                        <GradientStop Offset="0.05" Color="{Binding Color}" />
+                                        <GradientStop Offset="0.95" Color="{Binding Color}" />
+                                        <GradientStop Offset="1.0" Color="{Binding FalloffColor}" />
+                                    </LinearGradientBrush>
+                                </Border.Background>
                                 <Border.GestureRecognizers>
                                     <TapGestureRecognizer Command="{Binding BindingContext.QuestTappedCommand, Source={x:Reference MainPageRef}}" CommandParameter="{Binding BindingContext, Source={x:Reference QuestBorder}}" />
                                     <DragGestureRecognizer DragStartingCommand="{Binding BindingContext.StartQuestDragCommand, Source={x:Reference MainPageRef}}" DragStartingCommandParameter="{Binding}" />
@@ -42,7 +50,7 @@
                                     <Border Stroke="{StaticResource BorderGlassBody}" StrokeShape="RoundRectangle 24,24,0,0">
                                         <Border.Background>
                                             <RadialGradientBrush Center="0.5,0.5" Radius="0.5">
-                                                <GradientStop Offset="0.3" Color="{StaticResource BackgroundGlassBody1}" />
+                                                <GradientStop Offset="0.25" Color="{StaticResource BackgroundGlassBody1}" />
                                                 <GradientStop Offset="1.0" Color="{StaticResource BackgroundGlassBody2}" />
                                             </RadialGradientBrush>
                                         </Border.Background>
@@ -74,7 +82,7 @@
                                                         StrokeShape="RoundRectangle 0">
                                                         <Border.Background>
                                                             <RadialGradientBrush Center="0.5,0.5" Radius="0.5">
-                                                                <GradientStop Offset="0.6" Color="{StaticResource BackgroundGlassBody1}" />
+                                                                <GradientStop Offset="0.25" Color="{StaticResource BackgroundGlassBody1}" />
                                                                 <GradientStop Offset="1.0" Color="{StaticResource BackgroundGlassBody2}" />
                                                             </RadialGradientBrush>
                                                         </Border.Background>
@@ -110,7 +118,7 @@
                                                         Stroke="{StaticResource BorderGlassBody}">
                                                         <Border.Background>
                                                             <RadialGradientBrush Center="0.5,0.5" Radius="0.5">
-                                                                <GradientStop Offset="0.3" Color="{StaticResource BackgroundGlassBody1}" />
+                                                                <GradientStop Offset="0.25" Color="{StaticResource BackgroundGlassBody1}" />
                                                                 <GradientStop Offset="1.0" Color="{StaticResource BackgroundGlassBody2}" />
                                                             </RadialGradientBrush>
                                                         </Border.Background>
@@ -133,7 +141,7 @@
                                     <Border Stroke="{StaticResource BorderGlassBody}" StrokeShape="RoundRectangle 0,0,24,24">
                                         <Border.Background>
                                             <RadialGradientBrush Center="0.5,0.5" Radius="0.5">
-                                                <GradientStop Offset="0.0" Color="{StaticResource BackgroundGlassBody1}" />
+                                                <GradientStop Offset="0.25" Color="{StaticResource BackgroundGlassBody1}" />
                                                 <GradientStop Offset="1.0" Color="{StaticResource BackgroundGlassBody2}" />
                                             </RadialGradientBrush>
                                         </Border.Background>

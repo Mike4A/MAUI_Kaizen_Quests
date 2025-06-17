@@ -2,7 +2,8 @@
 using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 using System.ComponentModel;
-using System.Windows.Input;
+using Microsoft.Maui.Graphics;
+using Microsoft.Maui.Graphics.Text;
 
 namespace Kaizen_Quests.ViewModels
 {
@@ -66,6 +67,16 @@ namespace Kaizen_Quests.ViewModels
             }
         }
 
+        public string? FalloffColor
+        {
+            get
+            {
+                Color falloffColor = Microsoft.Maui.Graphics.Color.Parse(_questModel.Color);
+                falloffColor = falloffColor.WithLuminosity(falloffColor.GetLuminosity() * 0.8f);
+                return falloffColor.ToHex();
+            }
+        }
+
         public bool IsExpanded
         {
             get => _questModel.IsExpanded;
@@ -94,7 +105,7 @@ namespace Kaizen_Quests.ViewModels
             _questModel = quest;
             Goals = [.. _questModel.Goals.Select(g => new GoalViewModel(g))];
             Goals.CollectionChanged += Goals_CollectionChanged;
-        }      
+        }
 
         private void Goals_CollectionChanged(object? sender, NotifyCollectionChangedEventArgs e)
         {

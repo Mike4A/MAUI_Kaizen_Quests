@@ -27,21 +27,21 @@
     <Color x:Key="Gray950">#141414</Color>
 
     <Color x:Key="Rainbow0">#F9B3B3</Color>
-    <!-- HSL(0, 80%, 85%) -->
+    <!--  HSL(0, 80%, 85%)  -->
     <Color x:Key="Rainbow1">#F9D8B3</Color>
-    <!-- HSL(45, 80%, 85%) -->
+    <!--  HSL(45, 80%, 85%)  -->
     <Color x:Key="Rainbow2">#F3F9B3</Color>
-    <!-- HSL(90, 80%, 85%) -->
+    <!--  HSL(90, 80%, 85%)  -->
     <Color x:Key="Rainbow3">#B3F9CB</Color>
-    <!-- HSL(135, 80%, 85%) -->
+    <!--  HSL(135, 80%, 85%)  -->
     <Color x:Key="Rainbow4">#B3EDFA</Color>
-    <!-- HSL(180, 80%, 85%) -->
+    <!--  HSL(180, 80%, 85%)  -->
     <Color x:Key="Rainbow5">#B3C5F9</Color>
-    <!-- HSL(225, 80%, 85%) -->
+    <!--  HSL(225, 80%, 85%)  -->
     <Color x:Key="Rainbow6">#D8B3F9</Color>
-    <!-- HSL(270, 80%, 85%) -->
+    <!--  HSL(270, 80%, 85%)  -->
 
-    <Color x:Key="BackgroundMainPage">#FFF9F4</Color>   
+    <Color x:Key="BackgroundMainPage">#FFF9F4</Color>
     <Color x:Key="BackgroundMainFrame1">#EEEEEE</Color>
     <Color x:Key="BackgroundMainFrame2">#BBBBBB</Color>
     <Color x:Key="BackgroundGlassBody1">#88FFFFFF</Color>
