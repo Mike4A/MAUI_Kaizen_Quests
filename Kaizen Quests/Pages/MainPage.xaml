@@ -33,7 +33,7 @@
                                 Stroke="{StaticResource BorderMainFrame}"
                                 StrokeShape="RoundRectangle 20">
                                 <Border.Background>
-                                    <LinearGradientBrush  StartPoint="0,0" EndPoint="1,0">
+                                    <LinearGradientBrush StartPoint="0,0" EndPoint="1,0">
                                         <GradientStop Offset="0.0" Color="{Binding FalloffColor}" />
                                         <GradientStop Offset="0.05" Color="{Binding Color}" />
                                         <GradientStop Offset="0.95" Color="{Binding Color}" />
@@ -41,7 +41,6 @@
                                     </LinearGradientBrush>
                                 </Border.Background>
                                 <Border.GestureRecognizers>
-                                    <TapGestureRecognizer Command="{Binding BindingContext.QuestTappedCommand, Source={x:Reference MainPageRef}}" CommandParameter="{Binding BindingContext, Source={x:Reference QuestBorder}}" />
                                     <DragGestureRecognizer DragStartingCommand="{Binding BindingContext.StartQuestDragCommand, Source={x:Reference MainPageRef}}" DragStartingCommandParameter="{Binding}" />
                                     <DropGestureRecognizer DropCommand="{Binding BindingContext.QuestDropCommand, Source={x:Reference MainPageRef}}" DropCommandParameter="{Binding}" />
                                 </Border.GestureRecognizers>
@@ -62,7 +61,11 @@
                                             HorizontalTextAlignment="Center"
                                             Text="{Binding Title}"
                                             TextColor="{StaticResource Gray600}"
-                                            VerticalTextAlignment="Center" />
+                                            VerticalTextAlignment="Center">
+                                            <Label.GestureRecognizers>
+                                                <TapGestureRecognizer Command="{Binding BindingContext.QuestTappedCommand, Source={x:Reference MainPageRef}}" CommandParameter="{Binding BindingContext, Source={x:Reference QuestBorder}}" />
+                                            </Label.GestureRecognizers>
+                                        </Label>
 
                                     </Border>
                                     <!--  Goals CollectionView  -->
