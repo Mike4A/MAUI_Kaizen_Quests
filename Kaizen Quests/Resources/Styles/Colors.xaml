@@ -44,10 +44,10 @@
     <Color x:Key="BackgroundMainPage">#FFF9F4</Color>
     <Color x:Key="BackgroundMainFrame1">#EEEEEE</Color>
     <Color x:Key="BackgroundMainFrame2">#BBBBBB</Color>
-    <Color x:Key="BackgroundGlassBody1">#44FFFFFF</Color>
+    <Color x:Key="BackgroundGlassBody1">#AAFFFFFF</Color>
     <Color x:Key="BackgroundGlassBody2">#22AAAAAA</Color>
     <Color x:Key="BorderMainFrame">#AAAAAA</Color>
-    <Color x:Key="BorderGlassBody">#FFFFFF</Color>
+    <Color x:Key="BorderGlassBody">#44FFFFFF</Color>
 
     <SolidColorBrush x:Key="PrimaryBrush" Color="{StaticResource Primary}" />
     <SolidColorBrush x:Key="SecondaryBrush" Color="{StaticResource Secondary}" />
