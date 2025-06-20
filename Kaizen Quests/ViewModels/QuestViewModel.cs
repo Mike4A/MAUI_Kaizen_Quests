@@ -2,8 +2,6 @@
 using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 using System.ComponentModel;
-using Microsoft.Maui.Graphics;
-using Microsoft.Maui.Graphics.Text;
 
 namespace Kaizen_Quests.ViewModels
 {
