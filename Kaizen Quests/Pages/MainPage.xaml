@@ -41,6 +41,7 @@
                                     </LinearGradientBrush>
                                 </Border.Background>
                                 <Border.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding BindingContext.QuestTappedCommand, Source={x:Reference MainPageRef}}" CommandParameter="{Binding BindingContext, Source={x:Reference QuestBorder}}" />
                                     <DragGestureRecognizer DragStartingCommand="{Binding BindingContext.StartQuestDragCommand, Source={x:Reference MainPageRef}}" DragStartingCommandParameter="{Binding}" />
                                     <DropGestureRecognizer DropCommand="{Binding BindingContext.QuestDropCommand, Source={x:Reference MainPageRef}}" DropCommandParameter="{Binding}" />
                                 </Border.GestureRecognizers>
@@ -61,11 +62,7 @@
                                             HorizontalTextAlignment="Center"
                                             Text="{Binding Title}"
                                             TextColor="{StaticResource Gray600}"
-                                            VerticalTextAlignment="Center">
-                                            <Label.GestureRecognizers>
-                                                <TapGestureRecognizer Command="{Binding BindingContext.QuestTappedCommand, Source={x:Reference MainPageRef}}" CommandParameter="{Binding BindingContext, Source={x:Reference QuestBorder}}" />
-                                            </Label.GestureRecognizers>
-                                        </Label>
+                                            VerticalTextAlignment="Center" />
 
                                     </Border>
                                     <!--  Goals CollectionView  -->
