@@ -6,7 +6,7 @@ Kurztool zum Organisieren von Aufgaben mit verschachtelten Listen.
 **Start:** Visual Studio öffnen → Build → Run
 
 Architektur (grob):
-UI → ViewModel (MVVM) → Repository → SQLite
+UI → ViewModel (MVVM) → SQLite
 
 Lessons learned:
 - Drag&Drop in verschachtelten Strukturen
