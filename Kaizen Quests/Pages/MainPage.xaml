@@ -33,7 +33,7 @@
                                 Stroke="{StaticResource BorderMainFrame}"
                                 StrokeShape="RoundRectangle 20">
                                 <Border.Background>
-                                    <LinearGradientBrush  StartPoint="0,0" EndPoint="1,0">
+                                    <LinearGradientBrush StartPoint="0,0" EndPoint="1,0">
                                         <GradientStop Offset="0.0" Color="{Binding FalloffColor}" />
                                         <GradientStop Offset="0.05" Color="{Binding Color}" />
                                         <GradientStop Offset="0.95" Color="{Binding Color}" />
@@ -47,12 +47,17 @@
                                 </Border.GestureRecognizers>
                                 <VerticalStackLayout>
                                     <!--  Quest-Header mit Grid  -->
-                                    <Border Stroke="{StaticResource BorderGlassBody}" StrokeShape="RoundRectangle 24,24,0,0">
+                                    <Border
+                                        Stroke="{StaticResource BorderGlassBody}"
+                                        StrokeShape="RoundRectangle 24,24,0,0"
+                                        StrokeThickness="2">
                                         <Border.Background>
-                                            <RadialGradientBrush Center="0.5,0.5" Radius="0.5">
-                                                <GradientStop Offset="0.25" Color="{StaticResource BackgroundGlassBody1}" />
-                                                <GradientStop Offset="1.0" Color="{StaticResource BackgroundGlassBody2}" />
-                                            </RadialGradientBrush>
+                                            <LinearGradientBrush StartPoint="0,0" EndPoint="1,0">
+                                                <GradientStop Offset="0" Color="{StaticResource BackgroundGlassBody1}" />
+                                                <GradientStop Offset="0.1" Color="{StaticResource BackgroundGlassBody2}" />
+                                                <GradientStop Offset="0.9" Color="{StaticResource BackgroundGlassBody2}" />
+                                                <GradientStop Offset="1" Color="{StaticResource BackgroundGlassBody1}" />
+                                            </LinearGradientBrush>
                                         </Border.Background>
                                         <Label
                                             Padding="3"
@@ -79,12 +84,15 @@
                                                         Padding="3"
                                                         IsVisible="{Binding IsRegularGoal}"
                                                         Stroke="{StaticResource BorderGlassBody}"
-                                                        StrokeShape="RoundRectangle 0">
+                                                        StrokeShape="RoundRectangle 0"
+                                                        StrokeThickness="2">
                                                         <Border.Background>
-                                                            <RadialGradientBrush Center="0.5,0.5" Radius="0.5">
-                                                                <GradientStop Offset="0.25" Color="{StaticResource BackgroundGlassBody1}" />
-                                                                <GradientStop Offset="1.0" Color="{StaticResource BackgroundGlassBody2}" />
-                                                            </RadialGradientBrush>
+                                                            <LinearGradientBrush StartPoint="0,0" EndPoint="1,0">
+                                                                <GradientStop Offset="0" Color="{StaticResource BackgroundGlassBody1}" />
+                                                                <GradientStop Offset="0.1" Color="{StaticResource BackgroundGlassBody2}" />
+                                                                <GradientStop Offset="0.9" Color="{StaticResource BackgroundGlassBody2}" />
+                                                                <GradientStop Offset="1" Color="{StaticResource BackgroundGlassBody1}" />
+                                                            </LinearGradientBrush>
                                                         </Border.Background>
                                                         <Border.GestureRecognizers>
                                                             <TapGestureRecognizer Command="{Binding BindingContext.GoalTappedCommand, Source={x:Reference MainPageRef}}" CommandParameter="{Binding BindingContext, Source={x:Reference GoalBorder}}" />
@@ -115,12 +123,15 @@
                                                     <Border
                                                         Padding="4"
                                                         IsVisible="{Binding IsAddGoal}"
-                                                        Stroke="{StaticResource BorderGlassBody}">
+                                                        Stroke="{StaticResource BorderGlassBody}"
+                                                        StrokeThickness="2">
                                                         <Border.Background>
-                                                            <RadialGradientBrush Center="0.5,0.5" Radius="0.5">
-                                                                <GradientStop Offset="0.25" Color="{StaticResource BackgroundGlassBody1}" />
-                                                                <GradientStop Offset="1.0" Color="{StaticResource BackgroundGlassBody2}" />
-                                                            </RadialGradientBrush>
+                                                            <LinearGradientBrush StartPoint="0,0" EndPoint="1,0">
+                                                                <GradientStop Offset="0" Color="{StaticResource BackgroundGlassBody1}" />
+                                                                <GradientStop Offset="0.1" Color="{StaticResource BackgroundGlassBody2}" />
+                                                                <GradientStop Offset="0.9" Color="{StaticResource BackgroundGlassBody2}" />
+                                                                <GradientStop Offset="1" Color="{StaticResource BackgroundGlassBody1}" />
+                                                            </LinearGradientBrush>
                                                         </Border.Background>
                                                         <Border.GestureRecognizers>
                                                             <TapGestureRecognizer Command="{Binding BindingContext.AddGoalCommand, Source={x:Reference MainPageRef}}" CommandParameter="{Binding BindingContext, Source={x:Reference QuestBorder}}" />
@@ -138,12 +149,17 @@
                                         </CollectionView.ItemTemplate>
                                     </CollectionView>
                                     <!--  Collapse/Expand Element  -->
-                                    <Border Stroke="{StaticResource BorderGlassBody}" StrokeShape="RoundRectangle 0,0,24,24">
+                                    <Border
+                                        Stroke="{StaticResource BorderGlassBody}"
+                                        StrokeShape="RoundRectangle 0,0,24,24"
+                                        StrokeThickness="2">
                                         <Border.Background>
-                                            <RadialGradientBrush Center="0.5,0.5" Radius="0.5">
-                                                <GradientStop Offset="0.25" Color="{StaticResource BackgroundGlassBody1}" />
-                                                <GradientStop Offset="1.0" Color="{StaticResource BackgroundGlassBody2}" />
-                                            </RadialGradientBrush>
+                                            <LinearGradientBrush StartPoint="0,0" EndPoint="1,0">
+                                                <GradientStop Offset="0" Color="{StaticResource BackgroundGlassBody1}" />
+                                                <GradientStop Offset="0.1" Color="{StaticResource BackgroundGlassBody2}" />
+                                                <GradientStop Offset="0.9" Color="{StaticResource BackgroundGlassBody2}" />
+                                                <GradientStop Offset="1" Color="{StaticResource BackgroundGlassBody1}" />
+                                            </LinearGradientBrush>
                                         </Border.Background>
                                         <Border.GestureRecognizers>
                                             <TapGestureRecognizer Command="{Binding BindingContext.ToggleQuestExpandedCommand, Source={x:Reference MainPageRef}}" CommandParameter="{Binding BindingContext, Source={x:Reference QuestBorder}}" />

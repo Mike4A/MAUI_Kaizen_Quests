@@ -93,26 +93,13 @@ namespace Kaizen_Quests.ViewModels
         #region Other Fields
 
         private Goal _goalModel;
-        public Goal GoalModel => _goalModel; // Read-only property to expose the model directly for Sync-reasons
+        public Goal GoalModel => _goalModel; 
 
         #endregion
 
         public GoalViewModel(Goal goal)
         {
             _goalModel = goal;
-        }
-
-        public Goal ToModel()
-        {
-            return new Goal
-            {
-                Id = Id,
-                QuestId = QuestId,
-                Order = Order,
-                Text = Text,
-                IsCompleted = IsCompleted,
-                IsAddGoal = IsAddGoal
-            };
         }
     }
 }

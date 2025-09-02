@@ -70,7 +70,7 @@ namespace Kaizen_Quests.ViewModels
             get
             {
                 Color falloffColor = Microsoft.Maui.Graphics.Color.Parse(_questModel.Color);
-                falloffColor = falloffColor.WithLuminosity(falloffColor.GetLuminosity() * 0.8f);
+                falloffColor = falloffColor.WithLuminosity(falloffColor.GetLuminosity() * 0.7f);
                 return falloffColor.ToHex();
             }
         }

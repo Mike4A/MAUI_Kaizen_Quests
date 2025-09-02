@@ -47,7 +47,7 @@
     <Color x:Key="BackgroundGlassBody1">#AAFFFFFF</Color>
     <Color x:Key="BackgroundGlassBody2">#22AAAAAA</Color>
     <Color x:Key="BorderMainFrame">#AAAAAA</Color>
-    <Color x:Key="BorderGlassBody">#44FFFFFF</Color>
+    <Color x:Key="BorderGlassBody">#FFFFFFFF</Color>
 
     <SolidColorBrush x:Key="PrimaryBrush" Color="{StaticResource Primary}" />
     <SolidColorBrush x:Key="SecondaryBrush" Color="{StaticResource Secondary}" />
